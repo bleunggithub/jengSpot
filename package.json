@@ -1,0 +1,27 @@
+{
+  "name": "travelapp",
+  "version": "1.0.0",
+  "description": "Team: Betty, Bibek, Curtis",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bleunggithub/TravelApp.git"
+  },
+  "author": "Betty,Bibek,Curtis",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bleunggithub/TravelApp/issues"
+  },
+  "homepage": "https://github.com/bleunggithub/TravelApp#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-handlebars": "^5.1.0",
+    "knex": "^0.21.6",
+    "pg": "^8.4.1"
+  }
+}
