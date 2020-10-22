@@ -12,12 +12,6 @@ body {
 	color: #fff;
 }
 
-@media only screen and (max-width: 600px) {
-	body {
-		overflow: auto;
-	}
-}
-
 nav {
 	font-family: "Open Sans";
 	font-weight: 500;
@@ -64,7 +58,7 @@ nav {
 
 @keyframes float {
 	from {
-		transform: translateX(-20vw);
+		transform: translateX(-25vw);
 	}
 	to {
 		transform: translateX(100vw);
@@ -106,11 +100,11 @@ nav {
 	width: 60px;
 	position: absolute;
 	top: -15%;
-	left: 75%;
+	left: 5%;
 	background-image: url(./png/001-backpack.png);
 	background-size: cover;
 	background-position: center;
-	transform: rotateY(180deg);
+	/* transform: rotateY(180deg); */
 }
 
 #signUpDiv {
@@ -170,12 +164,11 @@ nav {
 }
 
 /* Landing Page Right Content */
-.content {
+.contents {
 	display: inline-block;
 	background-color: #fff;
 	margin: 1vw;
 	height: 40vh;
-	width: 25vw;
 	box-shadow: 4px 4px #494949;
 	color: #494949;
 	padding: 20px;
@@ -187,11 +180,11 @@ nav {
 #calling {
 	font-family: "Montserrat";
 }
-.content ul {
+.contents ul {
 	list-style-image: url("./value.png");
 	padding-left: 20px;
 }
-.content li {
+.contents li {
 	padding-top: 8px;
 }
 
@@ -214,11 +207,15 @@ nav {
 	color: #fff;
 	transition: all 0.5s ease-in-out;
 }
+.card-text {
+	font-size: 1em;
+}
 
 .overlay {
 	transition: all 0.5s ease-in-out;
 	height: 40vh;
-	width: 25vw;
+	width: 113%;
+	margin: 0;
 	position: relative;
 	top: -20px;
 	left: -20px;
@@ -250,8 +247,8 @@ nav {
 	height: 60px;
 	width: 60px;
 	position: absolute;
-	top: -6%;
-	left: 39%;
+	top: -18%;
+	left: 70%;
 	background-image: url(./png/031-woman-3.png);
 	background-size: cover;
 	background-position: center;
@@ -263,10 +260,22 @@ nav {
 	height: 60px;
 	width: 60px;
 	position: absolute;
-	top: 88%;
-	left: 85%;
+	top: 79%;
+	left: 80%;
 	background-image: url(./png/035-traveler.png);
 	background-size: cover;
 	background-position: center;
 	transform: rotateY(180deg);
+}
+
+@media only screen and (max-width: 600px) {
+	body {
+		overflow: auto;
+	}
+	.leftContainer {
+		margin-bottom: 10vh;
+	}
+	.contents {
+		margin: 5vmin;
+	}
 }
