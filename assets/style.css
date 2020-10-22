@@ -12,6 +12,12 @@ body {
 	color: #fff;
 }
 
+@media only screen and (max-width: 600px) {
+	body {
+		overflow: auto;
+	}
+}
+
 nav {
 	font-family: "Open Sans";
 	font-weight: 500;
@@ -38,22 +44,22 @@ nav {
 
 #cloud2 {
 	animation-duration: 47s;
-	animation-delay: 12s;
+	animation-delay: 20s;
 }
 
 #cloud3 {
 	animation-duration: 35s;
-	animation-delay: 5s;
+	animation-delay: 4s;
 }
 
 #cloud4 {
-	animation-duration: 60s;
+	animation-duration: 65s;
 	animation-delay: 12s;
 }
 
 #cloud5 {
 	animation-duration: 40s;
-	animation-delay: 7s;
+	animation-delay: 9s;
 }
 
 @keyframes float {
@@ -93,12 +99,17 @@ nav {
 }
 
 /* sign up box */
-#backpacker {
-	position: absolute;
-	z-index: 3;
+
+#signUpDiv::before {
+	content: "";
 	height: 60px;
-	top: 38%;
-	left: 73%;
+	width: 60px;
+	position: absolute;
+	top: -15%;
+	left: 75%;
+	background-image: url(./png/001-backpack.png);
+	background-size: cover;
+	background-position: center;
 	transform: rotateY(180deg);
 }
 
@@ -119,7 +130,6 @@ nav {
 }
 
 #signUpDiv p {
-	float: left;
 	font-size: 1.3em;
 }
 
@@ -169,11 +179,94 @@ nav {
 	box-shadow: 4px 4px #494949;
 	color: #494949;
 	padding: 20px;
+	font-family: "Open Sans";
+	font-size: 14px;
 }
+
+/* topleft */
 #calling {
 	font-family: "Montserrat";
 }
 .content ul {
 	list-style-image: url("./value.png");
 	padding-left: 20px;
+}
+.content li {
+	padding-top: 8px;
+}
+
+/* bottom right */
+
+/* cards */
+#topRight {
+	background-image: url("./photos/driedSeafoodStreet.jpg");
+	background-size: cover;
+	background-position: center;
+}
+#btmLeft {
+	background-image: url("./photos/hkShopCats.jpg");
+	background-size: cover;
+	background-position: center;
+}
+.card-title,
+.card-text {
+	opacity: 20%;
+	color: #fff;
+	transition: all 0.5s ease-in-out;
+}
+
+.overlay {
+	transition: all 0.5s ease-in-out;
+	height: 40vh;
+	width: 25vw;
+	position: relative;
+	top: -20px;
+	left: -20px;
+	padding: 20px;
+}
+
+.contentCard:hover .overlay {
+	background-color: #fff;
+	opacity: 0.7;
+}
+.contentCard:hover .card-title {
+	color: #000;
+	opacity: 1;
+}
+.contentCard:hover .card-text {
+	color: #000;
+	opacity: 1;
+}
+
+.contentCard a {
+	text-decoration: underline;
+	color: #494949;
+}
+
+/* illustrations */
+
+#topLeft::before {
+	content: "";
+	height: 60px;
+	width: 60px;
+	position: absolute;
+	top: -6%;
+	left: 39%;
+	background-image: url(./png/031-woman-3.png);
+	background-size: cover;
+	background-position: center;
+	transform: rotateY(180deg);
+}
+
+#btmRight::before {
+	content: "";
+	height: 60px;
+	width: 60px;
+	position: absolute;
+	top: 88%;
+	left: 85%;
+	background-image: url(./png/035-traveler.png);
+	background-size: cover;
+	background-position: center;
+	transform: rotateY(180deg);
 }
