@@ -1,0 +1,77 @@
+{{!-- navbar --}}
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark">
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto" id="navbarList">
+            <li class="nav-item">
+                <a class="nav-link" href="#">Explore </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Log In </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Join</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+{{!-- clouds in the background --}}
+<br />
+<br /><br />
+<img src="../assets/cloud.png" class="cloud" id="cloud1"><br /><br />
+<img src="../assets/cloud.png" class="cloud" id="cloud2"><br />
+<img src="../assets/cloud.png" class="cloud" id="cloud3"><br /><br />
+<img src="../assets/cloud.png" class="cloud" id="cloud4"><br />
+<img src="../assets/cloud.png" class="cloud" id="cloud5"><br />
+
+{{!-- contents --}}
+<div class="container-fluid outerContainer">
+    <div class="row justify-content-center">
+        <div class="col-lg-3 col-md-3 col-sm-12">
+            <h1 id="mainHeader">Explore <br /><span> Hong Kong </span><br /> Like a Local</h1><br /><br />
+            <img src="../assets/png/001-backpack.png" id="backpacker">
+            <div id="signUpDiv">
+                <p><strong>Sign up here!</strong></p>
+                <form action="/signUp" method="post">
+
+                    <input type="text" name="username" id="username" placeholder="USERNAME"><br />
+                    <input type="password" name="password" id="password" placeholder="PASSWORD"><br />
+                    <input type="email" name="email" id="email" placeholder="EMAIL"><br />
+                    <button type="submit" id="signUpBtn">Join Now</button><br />
+                    <button type="button" name="fbSignUp" class="oAuthSignUp">Join with Facebook</button>
+                    <button type="button" name="googleSignUp" class="oAuthSignUp">Join with Google</button><br />
+                    <span>By signing up, you agree to the <a href="#">Terms</a> and <a href="#">Privacy
+                            Policy</a>.</span>
+                </form>
+            </div>
+
+        </div>
+        <div class="col-lg-7 col-md-7 col-sm-12 contentContainer">
+            <div class="container-fluid">
+                <div class="row justify-content-center">
+                    <div class="content" id="topLeft">
+                        <h2 id="calling">Calling all HK-ers!</h2>
+                        <ul>
+                            <li>
+                                Sign Up and share your HK experience with Others.
+                            </li>
+                        </ul>
+
+                    </div>
+                    <div class="content" id="topRight"></div>
+                    <div class="content" id="btmLeft"></div>
+                    <div class="content" id="btmRight"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+{{!-- Icons made by <a href="http://www.freepik.com/" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/"
+    title="Flaticon"> www.flaticon.com</a> --}}

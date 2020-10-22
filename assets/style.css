@@ -1,0 +1,179 @@
+body {
+	background-image: linear-gradient(
+		to bottom,
+		#40a9e6,
+		#40a9e6 80%,
+		#008020 20%
+	);
+	background-attachment: fixed;
+	background-repeat: no-repeat;
+	overflow: hidden;
+	font-family: "Open Sans";
+	color: #fff;
+}
+
+nav {
+	font-family: "Open Sans";
+	font-weight: 500;
+}
+
+.nav-item {
+	padding: 0 10px;
+}
+
+/* clouds to animate */
+.cloud {
+	z-index: -1;
+	height: 10vh;
+	animation-name: float;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+	animation-fill-mode: both;
+	position: absolute;
+}
+
+#cloud1 {
+	animation-duration: 40s;
+}
+
+#cloud2 {
+	animation-duration: 47s;
+	animation-delay: 12s;
+}
+
+#cloud3 {
+	animation-duration: 35s;
+	animation-delay: 5s;
+}
+
+#cloud4 {
+	animation-duration: 60s;
+	animation-delay: 12s;
+}
+
+#cloud5 {
+	animation-duration: 40s;
+	animation-delay: 7s;
+}
+
+@keyframes float {
+	from {
+		transform: translateX(-20vw);
+	}
+	to {
+		transform: translateX(100vw);
+	}
+}
+
+/* Landing Page Container */
+.outerContainer {
+	position: absolute;
+	top: 8%;
+}
+
+/* Landing Page Left Content */
+/* h1 */
+#mainHeader {
+	font-family: "Montserrat";
+	font-size: 3em;
+	text-shadow: 4px 4px #494949;
+	margin-top: 10%;
+	line-height: 1.4em;
+}
+#mainHeader span {
+	background-color: #fff;
+	color: #494949;
+	text-shadow: none;
+	transition: all 0.2s ease-in-out;
+}
+#mainHeader span:hover {
+	background: #494949;
+	color: #fff;
+	text-shadow: none;
+}
+
+/* sign up box */
+#backpacker {
+	position: absolute;
+	z-index: 3;
+	height: 60px;
+	top: 38%;
+	left: 73%;
+	transform: rotateY(180deg);
+}
+
+#signUpDiv {
+	background-color: #fff;
+	height: 45vh;
+	box-shadow: 4px 4px #494949;
+	color: #494949;
+	padding: 20px;
+	transform: rotateZ(-2deg);
+	text-align: center;
+}
+
+#signUpDiv input {
+	border: 1px solid #494949;
+	width: 90%;
+	margin: 6px 8px;
+}
+
+#signUpDiv p {
+	float: left;
+	font-size: 1.3em;
+}
+
+#signUpBtn {
+	margin: 10px;
+	background-color: #494949;
+	color: #fff;
+	border: 1px solid #494949;
+	transition: all 0.2s ease-in-out;
+}
+
+#signUpBtn:hover {
+	background: white;
+	border: 1px solid #fff;
+	color: #494949;
+}
+
+.oAuthSignUp {
+	margin: 5px 7px;
+	background-color: #fff;
+	border: none;
+	font-size: 0.8em;
+	transition: all 0.2s ease-in-out;
+}
+
+.oAuthSignUp:hover {
+	background: #494949;
+	color: #fff;
+}
+
+#signUpDiv span {
+	font-size: 0.6em;
+}
+
+#signUpDiv a {
+	color: #494949;
+	text-decoration: underline;
+}
+
+/* Landing Page Right Content */
+.content {
+	display: inline-block;
+	background-color: #fff;
+	margin: 1vw;
+	height: 40vh;
+	width: 25vw;
+	box-shadow: 4px 4px #494949;
+	color: #494949;
+	padding: 20px;
+}
+#calling {
+	font-family: "Montserrat";
+}
+.content ul {
+	list-style-image: url("./value.png");
+	padding-left: 20px;
+}
