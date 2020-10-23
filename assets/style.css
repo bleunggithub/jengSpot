@@ -176,7 +176,7 @@ nav {
 	font-size: 14px;
 }
 
-/* topleft */
+/* topleft */ /* bottom right */
 #calling {
 	font-family: "Montserrat";
 }
@@ -188,7 +188,10 @@ nav {
 	padding-top: 8px;
 }
 
-/* bottom right */
+.halfHighlightGreen {
+	background: linear-gradient(to top, #00e23986 50%, transparent 40%);
+	transition: all 0.5s ease-in-out;
+}
 
 /* cards */
 #topRight {
