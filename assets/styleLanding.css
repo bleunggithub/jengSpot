@@ -7,7 +7,6 @@ body {
 	);
 	background-attachment: fixed;
 	background-repeat: no-repeat;
-	overflow: hidden;
 	font-family: "Open Sans";
 	color: #fff;
 }
@@ -59,16 +58,20 @@ body {
 /* Landing Page Container */
 .outerContainer {
 	position: absolute;
-	top: 8%;
+	top: 15%;
 }
 
 /* Landing Page Left Content */
+.topRow {
+	height: 55vh;
+	margin: 10vh 0;
+}
 /* h1 */
 #mainHeader {
 	font-family: "Montserrat";
-	font-size: 3em;
+	font-size: 4em;
 	text-shadow: 4px 4px #494949;
-	margin-top: 10%;
+	margin-top: 5%;
 	line-height: 1.4em;
 }
 #mainHeader span {
@@ -95,6 +98,20 @@ body {
 	background-image: url(./png/001-backpack.png);
 	background-size: cover;
 	background-position: center;
+	animation: jump 1s infinite;
+	animation-timing-function: ease-in-out;
+}
+
+@keyframes jump {
+	25% {
+		transform: translateY(5px);
+	}
+	50% {
+		transform: translateY(5px);
+	}
+	75% {
+		transform: translateY(5px);
+	}
 }
 
 #signUpDiv {
@@ -103,7 +120,7 @@ body {
 	box-shadow: 4px 4px #494949;
 	color: #494949;
 	padding: 20px;
-	transform: rotateZ(-2deg);
+	/* transform: rotateZ(-2deg); */
 	text-align: center;
 }
 
@@ -207,7 +224,7 @@ body {
 .overlay {
 	transition: all 0.5s ease-in-out;
 	height: 40vh;
-	width: 113%;
+	width: 105%;
 	margin: 0;
 	position: relative;
 	top: -20px;
@@ -262,9 +279,6 @@ body {
 }
 
 @media only screen and (max-width: 600px) {
-	body {
-		overflow: auto;
-	}
 	.leftContainer {
 		margin-bottom: 10vh;
 	}

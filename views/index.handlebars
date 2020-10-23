@@ -10,15 +10,15 @@
 
 {{!-- contents --}}
 <div class="container-fluid outerContainer">
-    <div class="row justify-content-center ">
+    <div class="row justify-content-center topRow">
         {{!-- left content --}}
-        <div class="col-lg-3 col-md-10 col-sm-10 leftContainer">
+        <div class="col-lg-4 col-md-10 col-sm-10 leftContainer">
             <h1 id="mainHeader">Explore <br /><span> Hong Kong </span><br /> Like a Local</h1><br /><br />
-
+        </div>
+        <div class="col-lg-6 col-md-10 col-sm-10 signUpContainer">
             <div id="signUpDiv">
                 <p><strong>Sign up here!</strong></p>
                 <form action="/signUp" method="post">
-
                     <input type="text" name="username" id="username" placeholder="USERNAME"><br />
                     <input type="password" name="password" id="password" placeholder="PASSWORD"><br />
                     <input type="email" name="email" id="email" placeholder="EMAIL"><br />
@@ -29,86 +29,88 @@
                             Policy</a>.</span>
                 </form>
             </div>
-
-        </div>
-        {{!-- right content --}}
-        <div class="col-lg-7 col-md-10 col-sm-10 contentContainer">
-            {{!-- top row --}}
-            <div class="row justify-content-center">
-                <div class="contents col-lg-5 col-md-10 col-sm-10" id="topLeft">
-                    <h2 id="calling">Calling all HK-ers!</h2>
-                    <ul>
-                        <li>
-                            Sign Up, <span class="halfHighlightGreen">share</span> your HK experience with others and
-                            get
-                            your
-                            <span class="halfHighlightGreen">reward</span>!
-                        </li>
-                        <li>
-                            <span class="halfHighlightGreen">Discover</span> new cool places of HK from your fellow
-                            HK-ers
-                        </li>
-                        <li>
-                            Have you content rated by the community and <span class="halfHighlightGreen">featured</span>
-                            on
-                            the front
-                            page!
-                        </li>
-                    </ul>
-                </div>
-
-                <div class="contents contentCard text-white col-lg-5 col-md-10 col-sm-10" id="topRight">
-                    <div class="overlay">
-                        <h5 class="card-title">Dried Seafood Street</h5>
-                        <p class="card-text">Des Voeux Road West, Wing Lok and Ko Shing Streets are known as Dried
-                            Seafood Street and Tonic Food Street. A section of
-                            Des Voeux Road West in Sheung Wan is packed with shops selling dried seafood. The
-                            origins of the trade in this area go
-                            back many decades, to when the products were dried on the rooftops, to be sold in the
-                            street-level stores. Black moss,
-                            salted fish, sausage, scallops ... <a href="#"><b>Click to read
-                                    more</b></a>
-                        </p>
-                    </div>
-                </div>
-            </div>
-            {{!-- btm row --}}
-            <div class="row justify-content-center">
-                <div class="contents contentCard text-white col-lg-5 col-md-10 col-sm-10" id="btmLeft">
-                    <div class="overlay">
-                        <h5 class="card-title">HK's Shop Cats</h5>
-                        <p class="card-text">The whimsical life of Hong Kong’s shop cats is showcased in a new
-                            book
-                            by a Dutch photographer after his portraits
-                            gathered thousands of fans worldwide on Instagram. Marcel Heijnen’s book includes
-                            scores
-                            of portraits of the city’s felines keeping their owners company at work. The
-                            52-year-old
-                            photographer, who lives in Sai Ying Pun, shot to internet fame at ... <a href="#"><b>Click
-                                    to read
-                                    more</b></a></p>
-                    </div>
-                </div>
-                <div class="contents col-lg-5 col-md-10 col-sm-10" id="btmRight">
-                    <h2 id="calling">Our dear travellers</h2>
-                    <ul>
-                        <li>
-                            Sign Up and <span class="halfHighlightGreen">discover</span> new cool places the locals
-                            love!
-                        </li>
-                        <li>
-                            Find the <span class="halfHighlightGreen">best and hottest deals</span> in town
-                        </li>
-                        <li>
-                            <span class="halfHighlightGreen">Ask</span>, and your question shall be answered!
-                        </li>
-
-                    </ul>
-                </div>
-            </div>
-
         </div>
     </div>
+    {{!-- bottom content --}}
+    {{!-- top row --}}
+    <div class="row justify-content-center">
+        <div class="contents col-lg-5 col-md-10 col-sm-10" id="topLeft">
+            <h2 id="calling">Calling all HK-ers!</h2>
+            <ul>
+                <li>
+                    Sign Up, <span class="halfHighlightGreen">share</span> your HK experience with others and
+                    get
+                    your
+                    <span class="halfHighlightGreen">reward</span>!
+                </li>
+                <li>
+                    <span class="halfHighlightGreen">Discover</span> new cool places of HK from your fellow
+                    HK-ers
+                </li>
+                <li>
+                    Have you content rated by the community and <span class="halfHighlightGreen">featured</span>
+                    on
+                    the front
+                    page!
+                </li>
+            </ul>
+        </div>
+
+
+        <div class="contents col-lg-5 col-md-10 col-sm-10" id="btmRight">
+            <h2 id="calling">Our dear travellers</h2>
+            <ul>
+                <li>
+                    Sign Up and <span class="halfHighlightGreen">discover</span> new cool places the locals
+                    love!
+                </li>
+                <li>
+                    Find the <span class="halfHighlightGreen">best and hottest deals</span> in town
+                </li>
+                <li>
+                    <span class="halfHighlightGreen">Ask</span>, and your question shall be answered!
+                </li>
+            </ul>
+        </div>
+
+    </div>
+    {{!-- btm row --}}
+    <div class="row justify-content-center">
+        <div class="contents contentCard text-white col-lg-5 col-md-10 col-sm-10" id="btmLeft">
+            <div class="overlay">
+                <h5 class="card-title">HK's Shop Cats</h5>
+                <p class="card-text">The whimsical life of Hong Kong’s shop cats is showcased in a new
+                    book
+                    by a Dutch photographer after his portraits
+                    gathered thousands of fans worldwide on Instagram. Marcel Heijnen’s book includes
+                    scores
+                    of portraits of the city’s felines keeping their owners company at work. The
+                    52-year-old
+                    photographer, who lives in Sai Ying Pun, shot to internet fame at ... <a href="#"><b>Click
+                            to read
+                            more</b></a></p>
+            </div>
+        </div>
+        <div class="contents contentCard text-white col-lg-5 col-md-10 col-sm-10" id="topRight">
+            <div class="overlay">
+                <h5 class="card-title">Dried Seafood Street</h5>
+                <p class="card-text">Des Voeux Road West, Wing Lok and Ko Shing Streets are known as Dried
+                    Seafood Street and Tonic Food Street. A section of
+                    Des Voeux Road West in Sheung Wan is packed with shops selling dried seafood. The
+                    origins of the trade in this area go
+                    back many decades, to when the products were dried on the rooftops, to be sold in the
+                    street-level stores. Black moss,
+                    salted fish, sausage, scallops ... <a href="#"><b>Click to read
+                            more</b></a>
+                </p>
+            </div>
+        </div>
+
+
+    </div>
+
+
+
 
 
 </div>
