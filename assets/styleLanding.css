@@ -12,15 +12,6 @@ body {
 	color: #fff;
 }
 
-nav {
-	font-family: "Open Sans";
-	font-weight: 500;
-}
-
-.nav-item {
-	padding: 0 10px;
-}
-
 /* clouds to animate */
 .cloud {
 	z-index: -1;
@@ -104,7 +95,6 @@ nav {
 	background-image: url(./png/001-backpack.png);
 	background-size: cover;
 	background-position: center;
-	/* transform: rotateY(180deg); */
 }
 
 #signUpDiv {
@@ -176,7 +166,7 @@ nav {
 	font-size: 14px;
 }
 
-/* topleft */
+/* topleft */ /* bottom right */
 #calling {
 	font-family: "Montserrat";
 }
@@ -188,7 +178,10 @@ nav {
 	padding-top: 8px;
 }
 
-/* bottom right */
+.halfHighlightGreen {
+	background: linear-gradient(to top, #00e23986 50%, transparent 50%);
+	transition: all 0.5s ease-in-out;
+}
 
 /* cards */
 #topRight {
