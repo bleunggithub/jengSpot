@@ -9,76 +9,51 @@ body {
 	background-repeat: no-repeat;
 	font-family: "Open Sans";
 	color: #fff;
+	overflow-x: hidden;
 }
 
 /* clouds to animate */
+.cloudDiv {
+	position: absolute;
+	z-index: -5;
+	left: -15vh;
+}
 .cloud {
-	z-index: -1;
 	height: 10vh;
-	animation-name: float;
-	animation-timing-function: linear;
-	animation-iteration-count: infinite;
-	animation-fill-mode: both;
-	position: absolute;
+	left: -15vh;
 }
 
-#cloud1 {
-	animation-duration: 40s;
-}
-
-#cloud2 {
-	animation-duration: 47s;
-	animation-delay: 20s;
-}
-
-#cloud3 {
-	animation-duration: 35s;
-	animation-delay: 4s;
-}
-
-#cloud4 {
-	animation-duration: 65s;
-	animation-delay: 12s;
-}
-
-#cloud5 {
-	animation-duration: 40s;
-	animation-delay: 9s;
-}
-
-@keyframes float {
-	from {
-		transform: translateX(-25vw);
-	}
-	to {
-		transform: translateX(100vw);
-	}
-}
-
-/* Landing Page Container */
+/* container */
 .outerContainer {
-	position: absolute;
-	top: 15%;
+	position: relative;
+	top: 15vh;
+	width: 100%;
 }
 
-/* Landing Page Left Content */
+/* row spacing*/
 .topRow {
-	height: 55vh;
 	margin: 10vh 0;
+}
+.secondRow,
+.thirdRow {
+	margin: 5vh 0;
 }
 /* h1 */
 #mainHeader {
 	font-family: "Montserrat";
 	font-size: 4em;
 	text-shadow: 4px 4px #494949;
-	margin-top: 5%;
+	margin-top: -5%;
 	line-height: 1.4em;
 }
-#mainHeader span {
+#HK {
 	background-color: #fff;
 	color: #494949;
 	text-shadow: none;
 	transition: all 0.2s ease-in-out;
+}
+#gemstone {
+	height: 80px;
 }
 #mainHeader span:hover {
 	background: #494949;
@@ -117,7 +92,7 @@ body {
 #signUpDiv {
 	background-color: #fff;
 	height: 45vh;
-	box-shadow: 4px 4px #494949;
+	box-shadow: 6px 6px #494949;
 	color: #494949;
 	padding: 20px;
 	/* transform: rotateZ(-2deg); */
@@ -176,7 +151,7 @@ body {
 	background-color: #fff;
 	margin: 1vw;
 	height: 40vh;
-	box-shadow: 4px 4px #494949;
+	box-shadow: 6px 6px #494949;
 	color: #494949;
 	padding: 20px;
 	font-family: "Open Sans";
@@ -201,17 +176,41 @@ body {
 }
 
 /* cards */
-#topRight {
+/* #btmRight {
 	background-image: url("./photos/driedSeafoodStreet.jpg");
 	background-size: cover;
 	background-position: center;
+} */
+#btmLeft,
+#btmRight {
+	padding: 0 15px;
 }
-#btmLeft {
-	background-image: url("./photos/hkShopCats.jpg");
-	background-size: cover;
-	background-position: center;
+.cardInnerPhoto {
+	display: flex;
+	padding: 0;
 }
-.card-title,
+.imgCover {
+	height: 40vh;
+	width: 100%;
+	object-fit: cover;
+}
+
+.cardInnerText {
+	padding: 4%;
+}
+
+.cardInnerText a {
+	font-size: 0.8em;
+	color: #494949;
+	text-decoration: underline;
+}
+.cardInnerText a:hover {
+	font-size: 0.8em;
+	color: #494949;
+	text-decoration: none;
+}
+
+/* .card-title,
 .card-text {
 	opacity: 20%;
 	color: #fff;
@@ -219,9 +218,9 @@ body {
 }
 .card-text {
 	font-size: 1em;
-}
+} */
 
-.overlay {
+/* .overlay {
 	transition: all 0.5s ease-in-out;
 	height: 40vh;
 	width: 105%;
@@ -230,9 +229,9 @@ body {
 	top: -20px;
 	left: -20px;
 	padding: 20px;
-}
+} */
 
-.contentCard:hover .overlay {
+/* .contentCard:hover .overlay {
 	background-color: #fff;
 	opacity: 0.7;
 }
@@ -243,12 +242,12 @@ body {
 .contentCard:hover .card-text {
 	color: #000;
 	opacity: 1;
-}
+} */
 
-.contentCard a {
+/* .contentCard a {
 	text-decoration: underline;
 	color: #494949;
-}
+} */
 
 /* illustrations */
 
@@ -265,7 +264,7 @@ body {
 	transform: rotateY(180deg);
 }
 
-#btmRight::before {
+#topRight::before {
 	content: "";
 	height: 60px;
 	width: 60px;
@@ -279,10 +278,29 @@ body {
 }
 
 @media only screen and (max-width: 600px) {
-	.leftContainer {
-		margin-bottom: 10vh;
+	.outerContainer {
+		top: -2vh;
+	}
+	#HK {
+		font-size: 0.8em;
+	}
+	#gemstone {
+		height: 40px;
+	}
+	#appName {
+		font-size: 0.8em;
+	}
+	.headerContainer {
+		margin: 5vmin 0;
 	}
 	.contents {
 		margin: 5vmin;
+	}
+	.secondRow {
+		margin-bottom: 0;
+	}
+	.thirdRow {
+		margin-top: 0;
+		margin-bottom: 15vh;
 	}
 }

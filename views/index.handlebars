@@ -1,21 +1,26 @@
 {{>navLanding}}
 {{!-- clouds in the background --}}
-<br />
-<br /><br />
-<img src="../assets/cloud.png" class="cloud" id="cloud1"><br /><br />
-<img src="../assets/cloud.png" class="cloud" id="cloud2"><br />
-<img src="../assets/cloud.png" class="cloud" id="cloud3"><br /><br />
-<img src="../assets/cloud.png" class="cloud" id="cloud4"><br />
-<img src="../assets/cloud.png" class="cloud" id="cloud5"><br />
+<div class="cloudDiv">
+    <img src="../assets/cloud.png" class="cloud" id="cloud1"><br />
+    <img src="../assets/cloud.png" class="cloud" id="cloud2"><br />
+    <img src="../assets/cloud.png" class="cloud" id="cloud3"><br />
+    <img src="../assets/cloud.png" class="cloud" id="cloud4"><br />
+    <img src="../assets/cloud.png" class="cloud" id="cloud5"><br />
+    <img src="../assets/cloud.png" class="cloud" id="cloud6"><br />
+
+</div>
 
 {{!-- contents --}}
 <div class="container-fluid outerContainer">
     <div class="row justify-content-center topRow">
-        {{!-- left content --}}
-        <div class="col-lg-4 col-md-10 col-sm-10 leftContainer">
-            <h1 id="mainHeader">Explore <br /><span> Hong Kong </span><br /> Like a Local</h1><br /><br />
+        {{!-- top left content (header)--}}
+        <div class="col-lg-5 col-md-10 col-sm-10 headerContainer">
+            <h1 id="mainHeader">Explore <br /><span id="HK"> Hong Kong </span><br />
+                <span id="appName">JengSpot&nbsp;</span><img src="../assets/gems.png" id="gemstone"><br /> Like a Local
+            </h1><br /><br />
         </div>
-        <div class="col-lg-6 col-md-10 col-sm-10 signUpContainer">
+        {{!-- top right content (sign up div) --}}
+        <div class="col-lg-5 col-md-10 col-sm-10 signUpContainer">
             <div id="signUpDiv">
                 <p><strong>Sign up here!</strong></p>
                 <form action="/signUp" method="post">
@@ -31,9 +36,11 @@
             </div>
         </div>
     </div>
-    {{!-- bottom content --}}
-    {{!-- top row --}}
-    <div class="row justify-content-center">
+</div>
+{{!-- bottom content --}}
+<div class="container-fluid outerContainer">
+    {{!-- second row --}}
+    <div class="row justify-content-center secondRow">
         <div class="contents col-lg-5 col-md-10 col-sm-10" id="topLeft">
             <h2 id="calling">Calling all HK-ers!</h2>
             <ul>
@@ -56,8 +63,7 @@
             </ul>
         </div>
 
-
-        <div class="contents col-lg-5 col-md-10 col-sm-10" id="btmRight">
+        <div class="contents col-lg-5 col-md-10 col-sm-10" id="topRight">
             <h2 id="calling">Our dear travellers</h2>
             <ul>
                 <li>
@@ -74,25 +80,34 @@
         </div>
 
     </div>
-    {{!-- btm row --}}
-    <div class="row justify-content-center">
-        <div class="contents contentCard text-white col-lg-5 col-md-10 col-sm-10" id="btmLeft">
-            <div class="overlay">
-                <h5 class="card-title">HK's Shop Cats</h5>
-                <p class="card-text">The whimsical life of Hong Kong’s shop cats is showcased in a new
-                    book
-                    by a Dutch photographer after his portraits
-                    gathered thousands of fans worldwide on Instagram. Marcel Heijnen’s book includes
-                    scores
-                    of portraits of the city’s felines keeping their owners company at work. The
-                    52-year-old
-                    photographer, who lives in Sai Ying Pun, shot to internet fame at ... <a href="#"><b>Click
-                            to read
-                            more</b></a></p>
+    {{!-- third row --}}
+    <div class="row justify-content-center thirdRow">
+        <div class="contents contentCard col-lg-5 col-md-10 col-sm-10" id="btmLeft">
+            <div class="row cardInnerRow">
+                <div class="col-lg-8 col-sm-12 cardInnerPhoto">
+                    <img src="./photos/hkShopCats.jpg" class="imgCover">
+                </div>
+                <div class="col-lg-4 col-sm-12 cardInnerText">
+                    <p>
+                    <h3><i class="fas fa-quote-left"></i></h3>The whimsical life of Hong Kong’s shop cats is showcased
+                    in a new book by a Dutch photographer after... <br /><br /><a href="#">click to read more</a></p>
+                </div>
             </div>
         </div>
-        <div class="contents contentCard text-white col-lg-5 col-md-10 col-sm-10" id="topRight">
-            <div class="overlay">
+        <div class="contents contentCard col-lg-5 col-md-10 col-sm-10" id="btmRight">
+            <div class="row cardInnerRow">
+                <div class="col-lg-8 col-sm-12 cardInnerPhoto">
+                    <img src="./photos/driedSeafoodStreet.jpg" class="imgCover">
+                </div>
+                <div class="col-lg-4 col-sm-12 cardInnerText">
+                    <p>
+                    <h3><i class="fas fa-quote-left"></i></h3>A section of
+                    Des Voeux Road West in Sheung Wan is packed with shops selling dried seafood. The
+                    origins of the trade... <br /><br /><a href="#">click to read more</a></p>
+                </div>
+            </div>
+
+            {{!-- <div class="overlay">
                 <h5 class="card-title">Dried Seafood Street</h5>
                 <p class="card-text">Des Voeux Road West, Wing Lok and Ko Shing Streets are known as Dried
                     Seafood Street and Tonic Food Street. A section of
@@ -103,17 +118,17 @@
                     salted fish, sausage, scallops ... <a href="#"><b>Click to read
                             more</b></a>
                 </p>
-            </div>
+            </div> --}}
         </div>
 
 
     </div>
 
-
-
-
-
 </div>
+{{>footer}}
+
+
+
 
 
 {{!-- Icons made by <a href="http://www.freepik.com/" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/"
