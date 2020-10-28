@@ -91,7 +91,7 @@ body {
 
 #signUpDiv {
 	background-color: #fff;
-	height: 45vh;
+	height: 47vh;
 	box-shadow: 6px 6px #494949;
 	color: #494949;
 	padding: 20px;
@@ -100,7 +100,8 @@ body {
 }
 
 #signUpDiv input {
-	border: 1px solid #494949;
+	border: none;
+	border-bottom: 1px solid #494949;
 	width: 90%;
 	margin: 6px 8px;
 }
@@ -209,45 +210,6 @@ body {
 	color: #494949;
 	text-decoration: none;
 }
-
-/* .card-title,
-.card-text {
-	opacity: 20%;
-	color: #fff;
-	transition: all 0.5s ease-in-out;
-}
-.card-text {
-	font-size: 1em;
-} */
-
-/* .overlay {
-	transition: all 0.5s ease-in-out;
-	height: 40vh;
-	width: 105%;
-	margin: 0;
-	position: relative;
-	top: -20px;
-	left: -20px;
-	padding: 20px;
-} */
-
-/* .contentCard:hover .overlay {
-	background-color: #fff;
-	opacity: 0.7;
-}
-.contentCard:hover .card-title {
-	color: #000;
-	opacity: 1;
-}
-.contentCard:hover .card-text {
-	color: #000;
-	opacity: 1;
-} */
-
-/* .contentCard a {
-	text-decoration: underline;
-	color: #494949;
-} */
 
 /* illustrations */
 
