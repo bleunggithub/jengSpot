@@ -26,6 +26,10 @@ app.get('/', (req, res) => {
     res.render("index")
 })
 
+app.get('/dashboard', (req, res) => {
+    res.render("dashboard")
+})
+
 app.listen(PORT, () => {
     console.log(`Server is running on ${PORT}.`)
 })
