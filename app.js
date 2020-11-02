@@ -5,6 +5,8 @@ const path = require("path");
 const bodyParser = require("body-parser");
 const exphbs = require("express-handlebars");
 
+const knex = require('./data/db');
+
 //Middleware - set up bodyParser
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -28,6 +30,13 @@ app.get('/', (req, res) => {
 
 app.get('/dashboard', (req, res) => {
     res.render("dashboard")
+})
+
+// set up knex router
+app.get('/user', function(req, res){
+    knex.raw('select * from user').then(function(user){
+        res.send(user);
+    })
 })
 
 app.listen(PORT, () => {
