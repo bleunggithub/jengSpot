@@ -4,6 +4,7 @@ exports.up = function(knex, Promise) {
     .createTable('user', function(table) {
       table.increments('id');
       table.string('username').notNullable();
+      table.string('password').notNullable();
       table.string('name').notNullable();
       table.string('email').notNullable();
       table.integer('number_of_posts').notNullable();
