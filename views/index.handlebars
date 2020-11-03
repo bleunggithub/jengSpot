@@ -22,11 +22,16 @@
         {{!-- top right content (sign up div) --}}
         <div class="col-lg-5 col-md-10 col-sm-10 signUpContainer">
             <div id="signUpDiv">
-                <p><strong>Sign up here!</strong></p>
-                <form action="/signUp" method="post">
-                    <input type="text" name="username" id="username" placeholder="USERNAME"><br />
-                    <input type="password" name="password" id="password" placeholder="PASSWORD"><br />
-                    <input type="email" name="email" id="email" placeholder="EMAIL"><br />
+                <p id="signUpDivTitle"><strong>Sign up here!</strong></p>
+                {{#if errors}}
+                <p id="errorMessage">{{message}}</p>
+                {{/if}}
+                <form action="/users/register" method="post">
+                    <input type="text" name="username" id="username" placeholder="USERNAME" required><br />
+                    <input type="password" name="password" id="password" placeholder="PASSWORD" required><br />
+                    <input type="password" name="confirmPassword" id="confirmPassword" placeholder="CONFIRM PASSWORD"
+                        required><br />
+                    <input type="email" name="email" id="email" placeholder="EMAIL" required><br />
                     <button type="submit" id="signUpBtn">Join Now</button><br />
                     <button type="button" name="fbSignUp" class="oAuthSignUp">Join with Facebook</button>
                     <button type="button" name="googleSignUp" class="oAuthSignUp">Join with Google</button><br />

@@ -14,7 +14,7 @@ body {
 
 /* clouds to animate */
 .cloudDiv {
-	position: absolute;
+	position: fixed;
 	z-index: -5;
 	left: -15vh;
 }
@@ -91,11 +91,10 @@ body {
 
 #signUpDiv {
 	background-color: #fff;
-	height: 47vh;
+	height: 50vh;
 	box-shadow: 6px 6px #494949;
 	color: #494949;
 	padding: 20px;
-	/* transform: rotateZ(-2deg); */
 	text-align: center;
 }
 
@@ -106,8 +105,16 @@ body {
 	margin: 6px 8px;
 }
 
-#signUpDiv p {
+#signUpDivTitle {
 	font-size: 1.3em;
+	padding: 0;
+	margin: 0;
+}
+
+#errorMessage {
+	font-size: 1em;
+	margin: 0;
+	color: #40a9e6;
 }
 
 #signUpBtn {
@@ -254,6 +261,9 @@ body {
 	}
 	.headerContainer {
 		margin: 5vmin 0;
+	}
+	#signUpDiv {
+		height: 45vh;
 	}
 	.contents {
 		margin: 5vmin;
