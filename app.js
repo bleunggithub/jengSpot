@@ -56,7 +56,7 @@ app.get('/explore', (req, res) => {
 
 //dashboard page
 app.get('/users/dashboard',checkNotAuthenticated, (req, res) => {
-    res.render("dashboard"//,{user: req.user.username} //! think about what items we need to pull from the database
+    res.render("dashboard"//,{users: req.user.username} //! think about what items we need to pull from the database
     )
 })
 
@@ -102,11 +102,13 @@ app.post("/users/register", async (req, res) => {
     } else {
         //* form validation passed
         let hashedPassword = await bcrypt.hash(password, 10);
-        console.log(hashedPassword);
+        console.log("hashed password " + hashedPassword);
 
-        knex.raw(
-            `SELECT * FROM users
-            WHERE email = $1 OR username = $2`, [email,username], (err, results) => {
+        knex('users').where({
+            email: `${email}`
+        }).orWhere({
+            username: `${username}`
+        }), (err, results) => {
             if (err) {
                 throw err
             }

@@ -9,10 +9,10 @@ exports.up = function(knex) {
       table.integer('received_comments');
       table.timestamps(true, true);
       table.integer('user_id');
-      table.foreign('user_id').references('user.id');                    
+      table.foreign('user_id').references('users.id');                    
     }); 
 };
 
 exports.down = function(knex) {
-    return knex.scheme.dropTable('post');
+    return knex.schema.dropTable('post');
 };
