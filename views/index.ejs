@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>JengSpot</title>
+
+    <!-- animate css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css" />
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous" />
+    <!-- font awesome  -->
+    <script src="https://kit.fontawesome.com/fdd79be92b.js" crossorigin="anonymous"></script>
+    <!-- Google font -->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&display=swap" rel="stylesheet">
+    <!-- custom -->
+    <!-- landing page -->
+    <link rel="stylesheet" href="./assets/styleLanding.css" />
+
+
+</head>
+
+<body>
+
+    <!-- navbar -->
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark">
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto" id="navbarList">
+                <li class="nav-item">
+                    <a class="nav-link" href="/explore">Explore </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" class="navLogIn" href="#signUpDiv">Log In </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" class="navSignUp" href="#signUpDiv">Join</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <!-- clouds in the background -->
+    <div class="cloudDiv">
+        <img src="../assets/cloud.png" class="cloud" id="cloud1"><br />
+        <img src="../assets/cloud.png" class="cloud" id="cloud2"><br />
+        <img src="../assets/cloud.png" class="cloud" id="cloud3"><br />
+        <img src="../assets/cloud.png" class="cloud" id="cloud4"><br />
+        <img src="../assets/cloud.png" class="cloud" id="cloud5"><br />
+        <img src="../assets/cloud.png" class="cloud" id="cloud6"><br />
+
+    </div>
+
+    <!-- contents  -->
+    <div class="container-fluid outerContainer">
+        <div class="row justify-content-center topRow">
+            <!-- top left content (header) -->
+            <div class="col-lg-5 col-md-10 col-sm-10 headerContainer">
+                <h1 id="mainHeader">Explore <br /><span id="HK"> Hong Kong </span><br />
+                    <span id="appName">JengSpot&nbsp;</span><img src="../assets/gems.png" id="gemstone"><br /> Like a
+                    Local
+                </h1><br /><br />
+            </div>
+            <!-- top right content (sign up div) -->
+            <div class="col-lg-5 col-md-10 col-sm-10 signUpContainer">
+                <div id="signUpDiv">
+                    <p id="signUpDivTitle"><strong>Sign up here!</strong></p>
+                    <!-- #if errors-->
+                    <!-- <p id="errorMessage">message</p> -->
+                    <!-- {{/if}} -->
+                    <form action="/users/register" method="post">
+                        <input type="text" name="username" id="username" placeholder="USERNAME" required><br />
+                        <input type="password" name="password" id="password" placeholder="PASSWORD" required><br />
+                        <input type="password" name="confirmPassword" id="confirmPassword"
+                            placeholder="CONFIRM PASSWORD" required><br />
+                        <input type="email" name="email" id="email" placeholder="EMAIL" required><br />
+                        <button type="submit" id="signUpBtn">Join Now</button><br />
+                        <button type="button" name="fbSignUp" class="oAuthSignUp">Join with Facebook</button>
+                        <button type="button" name="googleSignUp" class="oAuthSignUp">Join with Google</button><br />
+                        <span>By signing up, you agree to the <a href="#">Terms</a> and <a href="#">Privacy
+                                Policy</a>.</span>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- bottom content -->
+    <div class="container-fluid outerContainer">
+        <!-- second row  -->
+        <div class="row justify-content-center secondRow">
+            <div class="contents col-lg-5 col-md-10 col-sm-10" id="topLeft">
+                <h2 id="calling">Calling all HK-ers!</h2>
+                <ul>
+                    <li>
+                        Sign Up, <span class="halfHighlightGreen">share</span> your HK experience with others and
+                        get
+                        your
+                        <span class="halfHighlightGreen">reward</span>!
+                    </li>
+                    <li>
+                        <span class="halfHighlightGreen">Discover</span> new cool places of HK from your fellow
+                        HK-ers
+                    </li>
+                    <li>
+                        Have you content rated by the community and <span class="halfHighlightGreen">featured</span>
+                        on
+                        the front
+                        page!
+                    </li>
+                </ul>
+            </div>
+
+            <div class="contents col-lg-5 col-md-10 col-sm-10" id="topRight">
+                <h2 id="calling">Our dear travellers</h2>
+                <ul>
+                    <li>
+                        Sign Up and <span class="halfHighlightGreen">discover</span> new cool places the locals
+                        love!
+                    </li>
+                    <li>
+                        Find the <span class="halfHighlightGreen">best and hottest deals</span> in town
+                    </li>
+                    <li>
+                        <span class="halfHighlightGreen">Ask</span>, and your question shall be answered!
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+        <!-- third row -->
+        <div class="row justify-content-center thirdRow">
+            <div class="contents contentCard col-lg-5 col-md-10 col-sm-10" id="btmLeft">
+                <div class="row cardInnerRow">
+                    <div class="col-lg-8 col-sm-12 cardInnerPhoto">
+                        <img src="./photos/hkShopCats.jpg" class="imgCover">
+                    </div>
+                    <div class="col-lg-4 col-sm-12 cardInnerText">
+                        <p>
+                        <h3><i class="fas fa-quote-left"></i></h3>The whimsical life of Hong Kong’s shop cats is
+                        showcased
+                        in a new book by a Dutch photographer after... <br /><br /><a href="#">click to read more</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="contents contentCard col-lg-5 col-md-10 col-sm-10" id="btmRight">
+                <div class="row cardInnerRow">
+                    <div class="col-lg-8 col-sm-12 cardInnerPhoto">
+                        <img src="./photos/driedSeafoodStreet.jpg" class="imgCover">
+                    </div>
+                    <div class="col-lg-4 col-sm-12 cardInnerText">
+                        <p>
+                        <h3><i class="fas fa-quote-left"></i></h3>A section of
+                        Des Voeux Road West in Sheung Wan is packed with shops selling dried seafood. The
+                        origins of the trade... <br /><br /><a href="#">click to read more</a></p>
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+    <!-- footer -->
+    <footer>
+        <p><a href="#">Privacy Policy</a> | <a href="#">Personal Information </a>|<a href="#"> Terms</a></p>
+        © 2020 JengSpot
+    </footer>
+
+    <!-- smooth scroll -->
+    <script
+        src="https://cdn.jsdelivr.net/gh/cferdinandi/smooth-scroll@15.0/dist/smooth-scroll.polyfills.min.js"></script>
+    <!-- jquery-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- bootstrap -->
+
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+        crossorigin="anonymous"></script>
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js"></script>
+    <!-- custom -->
+    <script src="./assets/frontend.js"></script>
+    <!-- handlebars-->
+    <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+
+</body>
+<!-- Icons made by <a href="http://www.freepik.com/" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/"
+    title="Flaticon"> www.flaticon.com</a> -->
+
+</html>

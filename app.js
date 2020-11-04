@@ -3,7 +3,7 @@ const express = require("express");
 const app = express();
 const path = require("path");
 const bodyParser = require("body-parser");
-const exphbs = require("express-handlebars");
+// const exphbs = require("express-handlebars");
 const knex = require("./data/db");
 const bcrypt = require("bcrypt");
 const flash = require("express-flash");
@@ -25,10 +25,12 @@ const PORT = process.env.PORT || 3000;
 app.use(express.static("assets"));
 app.use(express.static(__dirname));
 
-//Middleware - set up handlebars views
-app.set("views", path.join(__dirname, "views"));
-app.engine("handlebars", exphbs({ defaultLayout: "main" }));
-app.set("view engine", "handlebars");
+//Middleware - set up views
+app.set("view engine", "ejs");
+
+// app.set("views", path.join(__dirname, "views"));
+// app.engine("handlebars", exphbs({ defaultLayout: "main" }));
+// app.set("view engine", "handlebars");
 
 //Middleware - set up flash
 app.use(flash());
@@ -97,8 +99,8 @@ app.post("/users/register", async (req, res) => {
     }
     
     if (errors.length > 0) {
+        console.log(errors[0].message)
         res.render('index', { errors })
-        console.log(errors)
     } else {
         //* form validation passed
         let hashedPassword = await bcrypt.hash(password, 10);
@@ -118,19 +120,21 @@ app.post("/users/register", async (req, res) => {
                 errors.push({ message: "Username/Email already registered." })
                 res.render("index", { errors })
             } else {
-                knex.raw(`INSERT INTO users (username,email,password) 
-                    VALUES ($1,$2,$3)
-                    RETURNING id, password`, [username, email, hashedPassword], (err, results) => {
+                knex("users").insert({
+                    username: `${ username }`,
+                    email: `${email}`,
+                    password: `${password}`
+                }), (err, results) => {
                     if (err) {
                         throw err
                     }
                     console.log(results.rows);
                     req.flash('success_msg', "You are now registered. Please log in.");
                     res.redirect('/index')
-                })
+                }
             }
         }
-        )
+        
     }
 }); 
 
