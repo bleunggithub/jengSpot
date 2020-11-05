@@ -23,7 +23,7 @@ module.exports = (app) => {
       try {
         let users = await knex("users").where({ email: email });
         if (users.length == 0) {
-          return done(null, false, { message: "Incorrect Credentials." });
+          return done(null, false, { message: "Incorrect Credentials. Please try again." });
         }
         let user = users[0];
         console.log(users[0])
@@ -31,7 +31,7 @@ module.exports = (app) => {
         if (result) {
           return done(null, user);
         } else {
-          return done(null, false, { message: "Incorrect Credentials." });
+          return done(null, false, { message: "Incorrect Credentials. Please try again." });
         }
       } catch (err) {
         return done(err);
@@ -39,31 +39,31 @@ module.exports = (app) => {
     })
   );
 
-  passport.use(
-    "local-signup",
-    new LocalStrategy({
-      usernameField: 'email',
-      passwordField: 'password'
-    }, async(email, password, done) => {
-      try {
-        let users = await knex("users").where({ email: email });
-        if (users.length > 0) {
-          return done(null, false, { message: "Email Already Taken" });
-        }
-        let hash = await bcrypt.hashPassword(password);
-        const newUser = {
-          email: email,
-          password: hash,
-        };
-        let userId = await knex("users").insert(newUser).returning("id");
-        newUser.id = userId[0];
-        done(null, newUser);
-      } catch (err) {
-        console.log(err)
-        done(err);
-      }
-    })
-  );
+  // passport.use(
+  //   "local-signup",
+  //   new LocalStrategy({
+  //     usernameField: 'email',
+  //     passwordField: 'password'
+  //   }, async(email, password, done) => {
+  //       try {
+  //       let users = await knex("users").where({ email: email });
+  //       if (users.length > 0) {
+  //         return done(null, false, { message: "Email Already Taken" });
+  //       }
+  //       let hash = await bcrypt.hashPassword(password);
+  //       const newUser = {
+  //         email: email,
+  //         password: hash,
+  //       };
+  //       let userId = await knex("users").insert(newUser).returning("id");
+  //       newUser.id = userId[0];
+  //       done(null, newUser);
+  //     } catch (err) {
+  //       console.log(err)
+  //       done(err);
+  //     }
+  //   })
+  // );
 
   passport.serializeUser((user, done) => {
     done(null, user.id);

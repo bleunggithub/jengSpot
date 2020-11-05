@@ -1,179 +1,186 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>JengSpot</title>
+		<title>JengSpot</title>
 
-    <!-- animate css -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css"
-    />
-    <!-- bootstrap -->
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-      integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
-      crossorigin="anonymous"
-    />
-    <!-- font awesome  -->
-    <script
-      src="https://kit.fontawesome.com/fdd79be92b.js"
-      crossorigin="anonymous"
-    ></script>
-    <!-- Google font -->
-    <link
-      href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&display=swap"
-      rel="stylesheet"
-    />
-    <!-- custom -->
-    <!-- rewards page  -->
-    <link rel="stylesheet" type="text/css" href="../assets/styleRewards.css" />
-  </head>
+		<!-- animate css -->
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css"
+		/>
+		<!-- bootstrap -->
+		<link
+			rel="stylesheet"
+			href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+			integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+			crossorigin="anonymous"
+		/>
+		<!-- font awesome  -->
+		<script
+			src="https://kit.fontawesome.com/fdd79be92b.js"
+			crossorigin="anonymous"
+		></script>
+		<!-- Google font -->
+		<link
+			href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap"
+			rel="stylesheet"
+		/>
+		<link
+			href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&display=swap"
+			rel="stylesheet"
+		/>
+		<!-- custom -->
+		<!-- rewards page  -->
+		<link rel="stylesheet" type="text/css" href="../assets/styleRewards.css" />
+	</head>
 
-  <body>
-    <!-- navbar  -->
-    <nav class="navbar fixed-top navbar-expand-lg navbar-dark">
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-toggle="collapse"
-        data-target="#navbarNav"
-        aria-controls="navbarNav"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ml-auto" id="navbarList">
-          <li class="nav-item">
-            <a class="nav-link" href="./dashboard.ejs">Dashboard</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Posts</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Settings</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Log Out</a>
-          </li>
-        </ul>
-      </div>
-    </nav>
-    <!-- clouds in the background -->
-    <div class="cloudDiv">
-      <img src="../assets/cloud.png" class="cloud" id="cloud1" />
-      <br />
-      <img src="../assets/cloud.png" class="cloud" id="cloud2" />
-      <br />
-      <img src="../assets/cloud.png" class="cloud" id="cloud3" />
-      <br />
-      <img src="../assets/cloud.png" class="cloud" id="cloud4" />
-      <br />
-      <img src="../assets/cloud.png" class="cloud" id="cloud5" />
-      <br />
-      <img src="../assets/cloud.png" class="cloud" id="cloud6" />
-      <br />
-    </div>
-    <div class="container-fluid outerRdContainer">
-      <div class="rewardRow row justify-content-center">
-        <div class="col-sm-12 balanceDiv">
-          <div class="rewardTitle">
-            <h1>YOUR BALANCE</h1>
-          </div>
-          <div class="rewardCheckDiv">
-            <div class="row rewardBalanceDiv justify-content-center">
-              <div class="col-sm-10 my-wallet">
-                <img src="../assets/gems.png" alt="gems" />
-                <h4><strong>240</strong> Gems</h4>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+	<body>
+		<!-- navbar  -->
+		<nav class="navbar fixed-top navbar-expand-lg navbar-dark">
+			<button
+				class="navbar-toggler"
+				type="button"
+				data-toggle="collapse"
+				data-target="#navbarNav"
+				aria-controls="navbarNav"
+				aria-expanded="false"
+				aria-label="Toggle navigation"
+			>
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarNav">
+				<ul class="navbar-nav ml-auto" id="navbarList">
+					<li class="nav-item">
+						<a class="nav-link" href="/dashboard">Home</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="/posts">Posts</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="/settings">Settings</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="/logout">Log Out</a>
+					</li>
+				</ul>
+			</div>
+		</nav>
+		<!-- clouds in the background -->
+		<div class="cloudDiv">
+			<img src="../assets/cloud.png" class="cloud" id="cloud1" />
+			<br />
+			<img src="../assets/cloud.png" class="cloud" id="cloud2" />
+			<br />
+			<img src="../assets/cloud.png" class="cloud" id="cloud3" />
+			<br />
+			<img src="../assets/cloud.png" class="cloud" id="cloud4" />
+			<br />
+			<img src="../assets/cloud.png" class="cloud" id="cloud5" />
+			<br />
+			<img src="../assets/cloud.png" class="cloud" id="cloud6" />
+			<br />
+		</div>
 
-      <div class="collectedRow row justify-content-around">
-        <div class="col-md-5 col-sm-12 collectedRewardDiv">
-          <h3>Collected Reward</h3>
-          <div class="card">
-            <div class="card-header">
-              <h2>5% off McDonald</h2>
-            </div>
-            <div class="card-body">
-              <p class="card-text redeemed">
-                <i class="fas fa-unlock"></i> Coupon Redeemed
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-5 col-sm-12 redeemRewardDiv">
-          <h3>Redeem Reward</h3>
+		<div class="container-fluid outerRdContainer">
+			<div class="rewardRow row justify-content-center">
+				<div class="col-sm-12 balanceDiv">
+					<div class="rewardTitle">
+						<h1>YOUR BALANCE</h1>
+					</div>
+					<div class="rewardCheckDiv">
+						<div class="row rewardBalanceDiv justify-content-center">
+							<div class="col-sm-10 my-wallet">
+								<img src="../assets/gems.png" alt="gems" />
+								<h4>
+									<strong>240</strong>
+									Gems
+								</h4>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 
-          <div class="card">
-            <div class="card-header">
-              <h2>5% off Uniqlo</h2>
-            </div>
-            <div class="card-body">
-              <button type="submit" id="submitPost">Redeem for 200 Gems</button>
-            </div>
-          </div>
+			<div class="collectedRow row justify-content-around">
+				<div class="col-md-5 col-sm-12 collectedRewardDiv">
+					<h3>Collected Reward</h3>
+					<div class="card">
+						<div class="card-header">
+							<h2>5% off McDonald</h2>
+						</div>
+						<div class="card-body">
+							<p class="card-text redeemed">
+								<i class="fas fa-unlock"></i>
+								Coupon Redeemed
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-5 col-sm-12 redeemRewardDiv">
+					<h3>Redeem Reward</h3>
 
-          <div class="card">
-            <div class="card-header">
-              <h2>6% off Uber</h2>
-            </div>
-            <div class="card-body">
-              <p class="card-text locked">
-                <i class="fas fa-lock"></i> Coupon locked: Redeem this at 500
-              </p>
-            </div>
-          </div>
+					<div class="card">
+						<div class="card-header">
+							<h2>5% off Uniqlo</h2>
+						</div>
+						<div class="card-body">
+							<button type="submit" id="submitPost">Redeem for 200 Gems</button>
+						</div>
+					</div>
 
-          <div class="card">
-            <div class="card-header">
-              <h2>2% off Rolex</h2>
-            </div>
-            <div class="card-body">
-              <p class="card-text locked">
-                <i class="fas fa-lock"></i> Coupon locked: Redeem this at 750
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+					<div class="card">
+						<div class="card-header">
+							<h2>6% off Uber</h2>
+						</div>
+						<div class="card-body">
+							<p class="card-text locked">
+								<i class="fas fa-lock"></i>
+								Coupon locked: Redeem this at 500
+							</p>
+						</div>
+					</div>
 
-    <!-- smooth scroll -->
-    <script src="https://cdn.jsdelivr.net/gh/cferdinandi/smooth-scroll@15.0/dist/smooth-scroll.polyfills.min.js"></script>
-    <!-- jquery-->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <!-- bootstrap -->
+					<div class="card">
+						<div class="card-header">
+							<h2>2% off Rolex</h2>
+						</div>
+						<div class="card-body">
+							<p class="card-text locked">
+								<i class="fas fa-lock"></i>
+								Coupon locked: Redeem this at 750
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 
-    <script
-      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
-      integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
-      integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
-      crossorigin="anonymous"
-    ></script>
-    <!-- GSAP -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js"></script>
-    <!-- custom -->
-    <script src="../assets/frontend.js"></script>
-    <!-- handlebars-->
-    <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
-  </body>
-  <!-- Icons made by <a href="http://www.freepik.com/" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/"
+		<!-- smooth scroll -->
+		<script src="https://cdn.jsdelivr.net/gh/cferdinandi/smooth-scroll@15.0/dist/smooth-scroll.polyfills.min.js"></script>
+		<!-- jquery-->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<!-- bootstrap -->
+
+		<script
+			src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+			integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+			crossorigin="anonymous"
+		></script>
+		<script
+			src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+			integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+			crossorigin="anonymous"
+		></script>
+		<!-- GSAP -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js"></script>
+		<!-- custom -->
+		<script src="../assets/frontend.js"></script>
+		<!-- handlebars-->
+		<script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+	</body>
+	<!-- Icons made by <a href="http://www.freepik.com/" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/"
     title="Flaticon"> www.flaticon.com</a> -->
 </html>

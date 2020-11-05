@@ -1,0 +1,68 @@
+body {
+	background-image: linear-gradient(
+		to bottom,
+		#40a9e6,
+		#40a9e6 80%,
+		#008020 20%
+	);
+	background-attachment: fixed;
+	background-repeat: no-repeat;
+	font-family: "Montserrat";
+	color: #fff;
+	overflow-x: hidden;
+}
+
+.container {
+	display: flex;
+	height: 45vh;
+	align-items: flex-end;
+	justify-content: center;
+	margin-bottom: 15vh;
+}
+
+span {
+	font-size: 2em;
+}
+
+#map {
+	width: 60px;
+	margin-bottom: 20px;
+}
+
+a {
+	color: #fff;
+	text-decoration: none;
+	background: linear-gradient(to top, #00e23986 50%, transparent 50%);
+}
+
+a:hover {
+	color: #fff;
+	text-decoration: none;
+	background: linear-gradient(to top, #00e23986 50%, transparent 50%);
+}
+
+.trains {
+	width: 15vw;
+	display: inline;
+	position: relative;
+	left: -50vw;
+}
+
+@media only screen and (max-width: 600px) {
+	.container {
+		height: 50vh;
+	}
+	body {
+		background-image: linear-gradient(
+			to bottom,
+			#40a9e6,
+			#40a9e6 60%,
+			#008020 20%
+		);
+		overflow: hidden;
+	}
+	.trains {
+		width: 18vw;
+		bottom: 5vh;
+	}
+}

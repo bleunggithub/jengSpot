@@ -84,6 +84,16 @@
                     <li><%= errors.message %></li>
                      <% }) %> <% } %>
                 </ul> 
+                    <ul>
+                    <% if(messages.error){ %>
+                        <li><%= messages.error %></li>
+                    <% } %>
+                </ul>
+                    <ul>
+                <% if(messages.success_msg) { %>
+                    <li><%= messages.success_msg %></li>
+                    <% } %>
+                </ul>
                      <form action="/register" method="POST">
                         <input type="text" name="username" id="username" placeholder="USERNAME" required><br />
                         <input type="email" name="email" id="emailReg" placeholder="EMAIL" required><br />
