@@ -58,7 +58,7 @@ nav {
 /* container */
 .outerContainer {
 	position: relative;
-	top: 15vh;
+	top: 10vh;
 	width: 100%;
 }
 
@@ -75,7 +75,6 @@ nav {
 	font-family: "Montserrat";
 	font-size: 4em;
 	text-shadow: 4px 4px #494949;
-	margin-top: -5%;
 	line-height: 1.4em;
 }
 #HK {
@@ -94,7 +93,6 @@ nav {
 }
 
 /* sign up box */
-
 #signUpDiv::before {
 	content: "";
 	height: 60px;
@@ -122,8 +120,9 @@ nav {
 }
 
 #signUpDiv {
+	/* display: none; */
 	background-color: #fff;
-	height: 50vh;
+	height: 60vh;
 	box-shadow: 6px 6px #494949;
 	color: #494949;
 	padding: 20px;
@@ -149,7 +148,7 @@ nav {
 #signUpDivTitle {
 	font-size: 1.3em;
 	padding: 0;
-	margin: 0;
+	margin-top: 1em;
 }
 
 #errorMessage {
@@ -192,6 +191,117 @@ nav {
 #signUpDiv a {
 	color: #494949;
 	text-decoration: underline;
+}
+/* log in box */
+#logInDivTitle {
+	font-size: 1.3em;
+	padding: 0;
+	margin-top: 2em;
+}
+
+#logInBtn {
+	margin: 10px;
+	background-color: #494949;
+	color: #fff;
+	border: 1px solid #494949;
+	transition: all 0.2s ease-in-out;
+}
+
+#logInBtn:hover {
+	background: white;
+	border: 1px solid #fff;
+	color: #494949;
+}
+
+/* tab */
+button:focus,
+input:focus,
+textarea:focus,
+select:focus {
+	outline: none;
+}
+
+.tabs {
+	display: block;
+	display: -webkit-flex;
+	display: -moz-flex;
+	display: flex;
+	-webkit-flex-wrap: wrap;
+	-moz-flex-wrap: wrap;
+	flex-wrap: wrap;
+	margin: 0;
+	overflow: hidden;
+}
+.tabs [class^="tab"] label,
+.tabs [class*=" tab"] label {
+	color: #494949;
+	cursor: pointer;
+	display: block;
+	font-size: 1.1em;
+	font-weight: 300;
+	line-height: 1em;
+	text-align: center;
+}
+.tabs [class^="tab"] [type="radio"],
+.tabs [class*=" tab"] [type="radio"] {
+	border-bottom: 1px solid rgba(247, 62, 5, 0.5);
+	cursor: pointer;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	display: block;
+	width: 100%;
+	-webkit-transition: all 0.3s ease-in-out;
+	-moz-transition: all 0.3s ease-in-out;
+	-o-transition: all 0.3s ease-in-out;
+	transition: all 0.3s ease-in-out;
+}
+.tabs [class^="tab"] [type="radio"]:hover,
+.tabs [class^="tab"] [type="radio"]:focus,
+.tabs [class*=" tab"] [type="radio"]:hover,
+.tabs [class*=" tab"] [type="radio"]:focus {
+	border-bottom: 1px solid #494949;
+}
+.tabs [class^="tab"] [type="radio"]:checked,
+.tabs [class*=" tab"] [type="radio"]:checked {
+	border-bottom: 2px solid #494949;
+}
+.tabs [class^="tab"] [type="radio"]:checked + div,
+.tabs [class*=" tab"] [type="radio"]:checked + div {
+	opacity: 1;
+}
+.tabs [class^="tab"] [type="radio"] + div,
+.tabs [class*=" tab"] [type="radio"] + div {
+	display: block;
+	opacity: 0;
+	width: 90%;
+	-webkit-transition: all 0.3s ease-in-out;
+	-moz-transition: all 0.3s ease-in-out;
+	-o-transition: all 0.3s ease-in-out;
+	transition: all 0.3s ease-in-out;
+}
+.tabs .tab-2 {
+	width: 50%;
+}
+.tabs .tab-2 [type="radio"] + div {
+	width: 200%;
+	margin-left: 200%;
+}
+.tabs .tab-2 [type="radio"]:checked + div {
+	margin-left: 0;
+}
+.tabs .tab-2:last-child [type="radio"] + div {
+	margin-left: 100%;
+}
+.tabs .tab-2:last-child [type="radio"]:checked + div {
+	margin-left: -100%;
+}
+
+#tab2-1:checked {
+	border: 1px solid #40a9e6;
+}
+#tab2-2:checked {
+	border: 1px solid #40a9e6;
 }
 
 /* Landing Page Right Content */
@@ -323,12 +433,13 @@ a:hover {
 		margin: 5vmin 0;
 	}
 	#signUpDiv {
-		height: 45vh;
+		height: 50vh;
 	}
 	.contents {
 		margin: 5vmin;
 	}
 	.secondRow {
+		margin-top: 4em;
 		margin-bottom: 0;
 	}
 	.thirdRow {
