@@ -3,7 +3,6 @@ const express = require("express");
 const app = express();
 const path = require("path");
 const bodyParser = require("body-parser");
-// const exphbs = require("express-handlebars");
 const knex = require("./data/db");
 const bcrypt = require("bcrypt");
 const flash = require("express-flash");
@@ -57,29 +56,29 @@ app.get('/explore', (req, res) => {
 })
 
 //dashboard page
-app.get('/users/dashboard',checkNotAuthenticated, (req, res) => {
+app.get('/dashboard',checkNotAuthenticated, (req, res) => {
     res.render("dashboard"//,{users: req.user.username} //! think about what items we need to pull from the database
     )
 })
 
 //setting page
-app.get('/users/settings', checkNotAuthenticated, (req, res) => {
+app.get('/settings', checkNotAuthenticated, (req, res) => {
     res.render("settings") //! 1)create settings page, 2) think about what items we need to pull from the database
 })
 
 //rewards page
-app.get('/users/rewards', checkNotAuthenticated, (req, res) => {
+app.get('/rewards', checkNotAuthenticated, (req, res) => {
     res.render("rewards") //! 1)create rewards page, 2) think about what items we need to pull from the database
 })
 
 //favourite/saved post page
-app.get('/users/saved', checkNotAuthenticated, (req, res) => {
+app.get('/saved', checkNotAuthenticated, (req, res) => {
     res.render("saved") //! 1)create saved page, 2) think about what items we need to pull from the database
 })
 
 
 //register route
-app.post("/users/register", async (req, res) => {
+app.post("/register", async (req, res) => {
     let { username, email, password, confirmPassword } = req.body;
 
     console.log({ username, email, password, confirmPassword });
@@ -104,49 +103,74 @@ app.post("/users/register", async (req, res) => {
     } else {
         //* form validation passed
         let hashedPassword = await bcrypt.hash(password, 10);
-        console.log("hashed password " + hashedPassword);
+        console.log("hashed password: " + hashedPassword);
 
-        knex('users').where({
-            email: `${email}`
-        }).orWhere({
-            username: `${username}`
-        }), (err, results) => {
+        knex.raw(
+            `SELECT * FROM users
+            WHERE email = $1`, [email], (err, results) => {
             if (err) {
-                throw err
+                console.log(err)
             }
             console.log(results.rows)
 
             if (results.rows.length > 0) {
-                errors.push({ message: "Username/Email already registered." })
+                errors.push({ message: "Email already registered." })
                 res.render("index", { errors })
             } else {
-                knex("users").insert({
-                    username: `${ username }`,
-                    email: `${email}`,
-                    password: `${password}`
-                }), (err, results) => {
+                knex.raw(`INSERT INTO users (username,email,password) 
+                    VALUES ($1,$2,$3)
+                    RETURNING id, password`, [username, email, hashedPassword], (err, results) => {
                     if (err) {
-                        throw err
+                        console.log(err)
                     }
                     console.log(results.rows);
                     req.flash('success_msg', "You are now registered. Please log in.");
-                    res.redirect('/index')
-                }
+                    res.redirect('/')
+                })
             }
         }
+        )
+        // knex('users').where({
+        //     email: `${email}`
+        // }).orWhere({
+        //     username: `${username}`
+        // }), (err, results) => {
+        //     if (err) {
+        //         throw err
+        //     }
+        //     console.log(results.rows)
+
+        //     if (results.rows.length > 0) {
+        //         errors.push({ message: "Username/Email already registered." })
+        //         res.render("index", { errors })
+        //     } else {
+        //         knex("users").insert({
+        //             username: `${ username }`,
+        //             email: `${email}`,
+        //             password: `${password}`
+        //         }), (err, results) => {
+        //             if (err) {
+        //                 throw err
+        //             }
+        //             console.log(results.rows);
+        //             req.flash('success_msg', "You are now registered. Please log in.");
+        //             res.redirect('/index')
+        //         }
+        //     }
+        // }
         
     }
 }); 
 
 //log in route
-app.post("/users/login", passport.authenticate('local', {
-    successRedirect: "/users/dashboard",
+app.post("/login", passport.authenticate('local', {
+    successRedirect: "/dashboard",
     failureRedirect: "/",
     failureFlash: true,
 }));
 
 //log out route
-app.get("/users/logout", (req, res) => {
+app.get("/logout", (req, res) => {
     req.logOut();
     // req.flash('success_msg', "You have logged out"); //! think about where we should display this message
     res.redirect("/")
@@ -157,7 +181,7 @@ app.get("/users/logout", (req, res) => {
 //for index page, explore page (if logged in, redirect to dashboard)
 function checkAuthenticated(req, res, next) {
     if (req.isAuthenticated()) {
-        return res.redirect('/users/dashboard')
+        return res.redirect('/dashboard')
     } next();
 }
 //for dashboard, rewards, settings, favourite (if not logged in, redirect to explore)

@@ -129,6 +129,15 @@ nav {
 	padding: 20px;
 	text-align: center;
 }
+#signUpDiv ul {
+	list-style-type: none;
+	padding: 0;
+}
+
+#signUpDiv ul li {
+	font-size: 0.8em;
+	color: #ff0000;
+}
 
 #signUpDiv input {
 	border: none;
