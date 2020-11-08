@@ -9,11 +9,17 @@ const knex = require("knex")({
     password: "postgres",
   },
 });
+const GoogleStrategy = require('passport-google-oauth20').Strategy;
+const FacebookStrategy = require('passport-facebook').Strategy;
+
+
+
 
 module.exports = (app) => {
   app.use(passport.initialize());
   app.use(passport.session());
 
+  //Local strategy - Log in
   passport.use(
     "local-login",
     new LocalStrategy({
@@ -34,37 +40,78 @@ module.exports = (app) => {
           return done(null, false, { message: "Incorrect Credentials. Please try again." });
         }
       } catch (err) {
+        console.trace(err)
         return done(err);
       }
     })
   );
 
-  // passport.use(
-  //   "local-signup",
-  //   new LocalStrategy({
-  //     usernameField: 'email',
-  //     passwordField: 'password'
-  //   }, async(email, password, done) => {
-  //       try {
-  //       let users = await knex("users").where({ email: email });
-  //       if (users.length > 0) {
-  //         return done(null, false, { message: "Email Already Taken" });
-  //       }
-  //       let hash = await bcrypt.hashPassword(password);
-  //       const newUser = {
-  //         email: email,
-  //         password: hash,
-  //       };
-  //       let userId = await knex("users").insert(newUser).returning("id");
-  //       newUser.id = userId[0];
-  //       done(null, newUser);
-  //     } catch (err) {
-  //       console.log(err)
-  //       done(err);
-  //     }
-  //   })
-  // );
+// Google OAuth
+passport.use(new GoogleStrategy({
+    clientID: process.env.GOOGLE_CLIENT_ID,
+    clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+    callbackURL: "http://localhost:3000/auth/google/dashboard",
+    userProfileURL: "https://www.googleapis.com/oauth2/v3/userinfo"
+}, async (accessToken, refreshToken, profile, done) => {
+    try {
+      console.log("profile:" + profile)
+      let usersGoogle = await knex("users").where({ googleId: profile.id });
 
+      if (usersGoogle.length === 0) {
+        const newUserGoogle = {
+          username: profile.displayName,
+          googleId: profile.id,
+          userPhoto: profile.photos[0].value,
+          number_of_posts:0
+        }
+        let userGId = await knex("users").insert(newUserGoogle).returning("id");
+        newUserGoogle.id = userGId[0];
+        res.redirect('/dashboard')
+      } else if (usersGoogle.length > 0){
+        let userGoogle = usersGoogle[0];
+        return done(null,userGoogle)
+      }
+    } catch (err) {
+      console.trace(err)
+        return done(err);
+      }
+  }
+));
+  
+  
+//Facebook OAuth
+  passport.use(new FacebookStrategy({
+    clientID: process.env.FACEBOOK_APP_ID,
+    clientSecret: process.env.FACEBOOK_APP_SECRET,
+    callbackURL: "http://localhost:3000/auth/fb/dashboard"
+}, async (accessToken, refreshToken, profile, done) => {
+      try {
+    console.log("profile: " + JSON.stringify(profile))
+            let usersFB = await knex("users").where({ fbId: profile.id });
+
+      if (usersFB.length === 0) {
+        const newUserFB = {
+          username: profile.displayName,
+          fbId: profile.id,
+          number_of_posts:0
+        }
+        let userFBId = await knex("users").insert(newUserFB).returning("id");
+        newUserFB.id = userFBId[0];
+        return res.redirect('/dashboard')
+      } else if (usersFB.length > 0){
+        let userFB = usersFB[0];
+        return done(null,userFB)
+      }
+    } catch (err) {
+      console.trace(err)
+        return done(err);
+      }
+    
+
+  }
+));
+
+//Serialise user
   passport.serializeUser((user, done) => {
     done(null, user.id);
   });

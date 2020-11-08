@@ -160,34 +160,52 @@ nav {
 }
 
 #signUpBtn {
-	margin: 10px;
+	margin: 15px;
+	margin-top: 1.8em;
 	background-color: #494949;
 	color: #fff;
 	border: 1px solid #494949;
 	transition: all 0.2s ease-in-out;
+	width: 60%;
 }
 
 #signUpBtn:hover {
-	background: white;
+	background: #fff;
 	border: 1px solid #fff;
 	color: #494949;
 }
 
-.oAuthSignUp {
-	margin: 5px 7px;
+#googleOAuthSignUp,
+#fbOAuthSignUp {
+	padding-right: 1em;
 	background-color: #fff;
 	border: none;
-	font-size: 0.8em;
+	font-size: 1.4em;
 	transition: all 0.2s ease-in-out;
 }
 
-.oAuthSignUp:hover {
-	background: #494949;
-	color: #fff;
+#googleOAuthSignIn,
+#fbOAuthSignIn {
+	padding: 0 1em;
+	background-color: #fff;
+	border: none;
+	font-size: 1.4em;
+	transition: all 0.2s ease-in-out;
 }
 
-#signUpDiv span {
-	font-size: 0.6em;
+#googleOAuthSignUp:hover,
+#fbOAuthSignUp:hover,
+#googleOAuthSignIn:hover,
+#fbOAuthSignIn:hover {
+	color: #40a9e6;
+}
+
+.oAuthSignUp {
+	margin-right: 2em;
+}
+
+.privacy {
+	font-size: 0.7em;
 }
 
 #signUpDiv a {
@@ -202,11 +220,13 @@ nav {
 }
 
 #logInBtn {
-	margin: 10px;
+	margin: 15px;
+	margin-top: 1.8em;
 	background-color: #494949;
 	color: #fff;
 	border: 1px solid #494949;
 	transition: all 0.2s ease-in-out;
+	width: 60%;
 }
 
 #logInBtn:hover {

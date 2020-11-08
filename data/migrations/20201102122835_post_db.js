@@ -1,18 +1,24 @@
 
 exports.up = function(knex) {
     return knex.schema
-    .createTable('post', function(table) {     
+    .createTable('posts', function(table) {     
       table.increments('id');
-      table.string('title');
-      table.string('content');
-      table.integer('received_like');
+      table.string('postTitle');
+      table.string('postContent');
+      table.string('postAddress');
+      table.string('postDo');
+      table.string('postGo');      
+      table.string('postLat');
+      table.string('postLng');
+      table.string('postPhoto');
+      table.integer('received_fav');
       table.integer('received_comments');
-      table.timestamps(true, true);
       table.integer('user_id');
       table.foreign('user_id').references('users.id');                    
+      table.timestamps(true, true);
     }); 
 };
 
 exports.down = function(knex) {
-    return knex.schema.dropTable('post');
+    return knex.schema.dropTable('posts');
 };

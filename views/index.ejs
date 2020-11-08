@@ -101,9 +101,8 @@
                      <input type="password" name="confirmPassword" id="confirmPassword"
                             placeholder="CONFIRM PASSWORD" required><br />
                         <button type="submit" id="signUpBtn">Join Now</button><br /></form>
-                        <button type="button" name="fbSignUp" class="oAuthSignUp">Join with Facebook</button>
-                        <button type="button" name="googleSignUp" class="oAuthSignUp">Join with Google</button><br /> <!--!FIX THIS-->
-                        <span>By signing up, you agree to the <a href="#">Terms</a> and <a href="#">Privacy
+                        <span class="oAuthSignUp"><a href="/auth/google" id="googleOAuthSignUp"><i class="fab fa-google"></i></a>
+<a href="/auth/fb" id="fbOAuthSignUp"><i class="fab fa-facebook-square"></i></a></span><span class="privacy">By signing up, you agree to the <a href="#">Terms</a> and <a href="#">Privacy
                                 Policy</a>.</span>
     </div>
   </div>
@@ -117,6 +116,8 @@
                         <input type="email" name="email" id="emailLogin" placeholder="EMAIL" required><br />
                         <input type="password" name="password" id="passwordLogin" placeholder="PASSWORD" required><br />
                         <button type="submit" id="logInBtn">Log In</button><br /></form>
+                        <span class="oAuthSignIn"><a href="/auth/google" id="googleOAuthSignIn"><i class="fab fa-google"></i></a>
+<a href="/auth/fb" id="fbOAuthSignIn"><i class="fab fa-facebook-square"></i></a></span>
     </div>
   </div>
 </div>

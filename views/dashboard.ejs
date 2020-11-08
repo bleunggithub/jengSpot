@@ -88,64 +88,33 @@
 			<br />
 		</div>
 
+		<!-- content -->
 		<div class="outerDBContainer container-fluid">
 			<div class="dashboardRow row justify-content-center">
 				<div class="col-lg-4 col-md-4 col-sm-10 dashboardLeft">
-					<div class="fixedWrapper col-lg-4 col-md-4 col-sm-10">
-						<div class="col-12 userDetails">
-							<div class="col-5 userPhotoDiv">
-								<img
-									src="../assets/user/haileyJensen.jpg"
-									alt="userPhoto"
-									class="userPhoto"
-								/>
-							</div>
-							<div class="col-6 userTextDiv">
-								<h4 class="username">HaileyJensen</h4>
-								<p class="points">Gems earned: 240</p>
-							</div>
+					<!-- <div class="fixedWrapper col-lg-4 col-md-4 col-sm-10"> -->
+					<div class="col-12 userDetails">
+						<div class="col-3 userPhotoDiv">
+							<img
+								src="../assets/user/haileyJensen.jpg"
+								alt="userPhoto"
+								class="userPhoto"
+							/>
 						</div>
-						<br />
-						<div class="col-12 writePost">
-							<form action="/writePost" method="POST">
-								<input
-									type="text"
-									name="postTitle"
-									id="postTitle"
-									placeholder="TITLE"
-								/>
-								<br />
-								<textarea
-									name=""
-									id="postContent"
-									placeholder="WHERE DID YOU GO? SHARE WITH US!"
-								></textarea>
-								<br />
-								<input
-									type="text"
-									name="postAddress"
-									id="postAddress"
-									placeholder="ADDRESS"
-								/>
-								<br />
-								<label class="button choosePhoto" for="postPhoto">
-									Pick a Photo
-								</label>
-								<input type="file" name="postPhoto" id="postPhoto" />
-								<button type="submit" id="submitPost">Post</button>
-								<br />
-							</form>
+						<div class="col-4 userTextDiv">
+							<h5 class="username">HaileyJensen</h5>
+							<p class="points">Gems earned: 240</p>
 						</div>
-
-						<div class="col-12 filters">
+						<div class="col-5 filters">
 							<form action="#" method="POST">
 								<select name="What do you want to do?" id="whatSelector">
 									<option value="whatToSee" selected>What to see?</option>
 									<option value="whatToEat">What to eat?</option>
+									<option value="others">Let's do something else</option>
 									<option value="upForAnything">I am up for anything!</option>
 								</select>
 							</form>
-							<br />
+
 							<form action="#" method="POST">
 								<select name="Where?" id="whereSelector">
 									<option value="hkIsland" selected>Hong Kong Island</option>
@@ -156,7 +125,79 @@
 							</form>
 						</div>
 					</div>
+					<div class="col-12 writePost">
+						<form action="/writePost" method="POST">
+							<input
+								type="text"
+								name="postTitle"
+								id="postTitle"
+								placeholder="TITLE"
+							/>
+							<br />
+							<textarea
+								name="postContent"
+								id="postContent"
+								maxlength="500"
+								placeholder="WHERE DID YOU GO? SHARE WITH US! (500 characters)"
+							></textarea>
+							<br />
+							<input
+								type="text"
+								name="postAddress"
+								id="postAddress"
+								placeholder="ADDRESS"
+							/>
+							<div class="selectors">
+								<select name="postDo" id="postWhatSelector">
+									<optgroup label="What did you do?">
+										<option value="whatToEat">Eat</option>
+										<option value="whatToSee">See</option>
+										<option value="others">It was something else!</option>
+									</optgroup>
+								</select>
+								<select name="postGo" id="postWhereSelector">
+									<optgroup label="Where did you go?">
+										<option value="hkIsland">Hong Kong Island</option>
+										<option value="kowloon">Kowloon</option>
+										<option value="NT">New Territories</option>
+									</optgroup>
+								</select>
+							</div>
+							<input type="text" name="postLat" id="postLat" value="" />
+							<input type="text" name="postLng" id="postLng" value="" />
+
+							<div id="postMap"></div>
+
+							<div class="row">
+								<div class="col-6 selectedFileText">
+									<div id="selected"></div>
+								</div>
+								<div class="col-6">
+									<label class="button choosePhoto" for="postPhoto">
+										Pick a Photo
+									</label>
+									<input
+										type="file"
+										id="postPhoto"
+										onchange="displayFile()"
+										accept="image/jpeg"
+									/>
+									<input
+										type="text"
+										name="postPhoto"
+										id="postPhotoUrl"
+										value=""
+									/>
+
+									<button type="submit" id="submitPost">Submit</button>
+									<br />
+								</div>
+							</div>
+						</form>
+					</div>
+					<!-- </div> -->
 				</div>
+				<!-- dashboard right content -->
 				<div class="col-lg-5 col-md-5 col-sm-10 dashboardRight">
 					<div class="col-12 container-fluid trendingPost">
 						<div class="row">
@@ -194,10 +235,23 @@
 										&nbsp; 2
 									</span>
 									<span>
-										<a href="#"><i class="fas fa-globe-asia"></i></a>
+										<a href="#">
+											<i class="fas fa-globe-asia" onclick="mapPopUp(this)"></i>
+										</a>
 									</span>
 								</div>
 							</div>
+							<br />
+							<!-- <div class="row">
+								<div class="col-12 trendingMapDiv">
+									<span onclick="mapPopUpClose()" class="closeBtn">
+										&#10005;
+									</span>
+									<div class="col-12 trendingMap">
+										
+									</div>
+								</div>
+							</div> -->
 							<div class="row">
 								<div class="col-12 trendingPhotoDiv">
 									<img
@@ -266,7 +320,6 @@
 		<!-- jquery-->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 		<!-- bootstrap -->
-
 		<script
 			src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
 			integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
@@ -281,8 +334,12 @@
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js"></script>
 		<!-- custom -->
 		<script src="../assets/frontend.js"></script>
-		<!-- handlebars-->
-		<script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+		<script src="../assets/frontendDashboard.js"></script>
+		<!-- Google Map-->
+		<script
+			defer
+			src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB77Ifdt8J_FbKIlSLystbif9l7oEdliUg&callback=initMap"
+		></script>
 	</body>
 	<!-- Icons made by <a href="http://www.freepik.com/" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/"
     title="Flaticon"> www.flaticon.com</a> -->

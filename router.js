@@ -11,13 +11,14 @@ const knex = require("knex")({
 });
 
 
+
 module.exports = (express) => {
     const router = express.Router();
 
     //for index page, explore page (if logged in, redirect to dashboard)
     function isLoggedIn(req, res, next) {
         if (req.isAuthenticated()) {
-            return res.redirect('/dashboard'); 
+            return res.redirect('/dashboard');
         }
         next();
     }
@@ -27,13 +28,13 @@ module.exports = (express) => {
         if (req.isAuthenticated()) {
             return next();
         }
-        res.redirect('/explore'); 
+        res.redirect('/explore');
     }
 
 
     //landing page
     router.get('/', (req, res) => {
-            res.render("index")
+        res.render("index")
     });
     
     //explore page
@@ -42,7 +43,7 @@ module.exports = (express) => {
     })
     
     //dashboard (logged in)
-    router.get('/dashboard',  isNotLoggedIn, (req, res) => {
+    router.get('/dashboard', isNotLoggedIn, (req, res) => {
         res.render('dashboard'); //! think about what to pull from the database
     });
 
@@ -60,16 +61,16 @@ module.exports = (express) => {
     router.get('/posts', isNotLoggedIn, (req, res) => {
         res.render("posts") //! 1)create saved page, 2) think about what items we need to pull from the database, 3)this also includes user's own posts
     })
+    
+    //create individual post page for details
+    router.get('/posts/:postId', isNotLoggedIn, (req, res) => {
+        const requestedPost = req.params.postId
+
+    })
 
     //error page
     router.get('/error', (req, res) => {
         res.render("error"); //! create error page
-    });
-
-
-    //dashboard (logged in) 
-    router.get('/dashboard', isNotLoggedIn, (req, res) => {
-        res.render('dashboard');
     });
 
 
@@ -78,56 +79,95 @@ module.exports = (express) => {
     router.post('/register', async (req, res) => {
         let { username, email, password, confirmPassword } = req.body;
 
-    console.log({ username, email, password, confirmPassword });
+        console.log({ username, email, password, confirmPassword });
 
-    let errors = [];
+        let errors = [];
 
-    if (!username || !email || !password || !confirmPassword) {
-        errors.push({ message: "Please enter all fields." })
-    }
-
-    if (password.length < 6) {
-        errors.push({ message: "Password should be at least 6 characters." })
-    }
-
-    if (password != confirmPassword) {
-        errors.push({ message: "Passwords do not match." })
-    }
-    
-    if (errors.length > 0) {
-        res.render('index', { errors })
-        console.log(errors)
-    } else {
-        try {
-            let users = await knex("users").where({ email: email }).orWhere({ username: username });
-            if (users.length > 0) {
-                errors.push({ message: "Email already registered." })
-                res.render("index", { errors })
-            } else {
-                let hashedPassword = await bcrypt.hash(password, 10);
-                console.log(hashedPassword);
-                const newUser = {
-                    username: username,
-                    email: email,
-                    password: hashedPassword,
-                    number_of_posts: 0
-                }
-                let userId = await knex("users").insert(newUser).returning("id");
-                newUser.id = userId[0];
-                res.redirect('/dashboard')
-            }
-        } catch (err) {
-            console.log(err)
+        if (!username || !email || !password || !confirmPassword) {
+            errors.push({ message: "Please enter all fields." })
         }
-    }
+
+        if (password.length < 6) {
+            errors.push({ message: "Password should be at least 6 characters." })
+        }
+
+        if (password != confirmPassword) {
+            errors.push({ message: "Passwords do not match." })
+        }
+    
+        if (errors.length > 0) {
+            res.render('index', { errors })
+            console.log(errors)
+        } else {
+            try {
+                let users = await knex("users").where({ email: email }).orWhere({ username: username });
+                if (users.length > 0) {
+                    errors.push({ message: "Email already registered." })
+                    res.render("index", { errors })
+                } else {
+                    let hashedPassword = await bcrypt.hash(password, 10);
+                    console.log(hashedPassword);
+                    const newUser = {
+                        username: username,
+                        email: email,
+                        password: hashedPassword,
+                        number_of_posts: 0
+                    }
+                    let userId = await knex("users").insert(newUser).returning("id");
+                    newUser.id = userId[0];
+                    res.redirect('/dashboard')
+                }
+            } catch (err) {
+                console.log(err)
+            }
+        }
     });
 
     //login 
     router.post('/login', passport.authenticate('local-login', {
         successRedirect: '/dashboard',
         failureRedirect: '/',
-        failureFlash:true
+        failureFlash: true
     }));
+
+    //write post
+    router.post('/writePost', isNotLoggedIn, async (req, res) => {
+        const post = {
+            user_id: req.user.id,
+            postTitle: req.body.postTitle,
+            postContent: req.body.postContent,
+            postAddress: req.body.postAddress,
+            postDo:req.body.postDo,
+            postGo:req.body.postGo,
+            postLat: req.body.postLat,
+            postLng: req.body.postLng,
+            postPhoto: req.body.postPhoto
+        }
+        console.log(req.body)
+
+    })
+
+
+    //third party OAuth 
+    //Google
+    router.get('/auth/google', passport.authenticate('google',
+        { scope: ['profile'] }
+    ));
+    
+    router.get('/auth/google/dashboard', 
+    passport.authenticate('google', { failureRedirect: '/' }),(req, res)=> {
+    // Successful authentication, redirect dashboard
+    res.redirect('/dashboard');
+    });
+    
+    //Facebook 
+    router.get('/auth/fb', passport.authenticate('facebook'));
+    
+    router.get('/auth/fb/dashboard', 
+    passport.authenticate('facebook', { failureRedirect: '/' }),(req, res)=> {
+    // Successful authentication, redirect dashboard
+    res.redirect('/dashboard');
+    });
 
 
     //log out
