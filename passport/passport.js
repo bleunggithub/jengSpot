@@ -62,7 +62,6 @@ passport.use(new GoogleStrategy({
           username: profile.displayName,
           googleId: profile.id,
           userPhoto: profile.photos[0].value,
-          number_of_posts: 0,
           points_received: 0,
           points_redeemed: 0,
           admin: false

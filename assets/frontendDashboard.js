@@ -52,6 +52,7 @@ x.addEventListener("change", e => {
 //favourite
 let fav = document.getElementsByClassName("fa-heart");
 
+
 for (let i = 0; i < fav.length; i++){
     fav[i].addEventListener("click", e => {
         let postId = e.target.id;

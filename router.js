@@ -89,7 +89,7 @@ module.exports = (express) => {
                 userPhoto: 'users.userPhoto',
                 points_received: 'users.points_received'
             }).where({id:req.user.id})
-            // console.trace(userData)
+            
 
             res.render('dashboard',{postData: postData, userData:userData[0]}); 
         } catch(err) {
@@ -117,9 +117,77 @@ module.exports = (express) => {
     })
     
     //create individual post page for details
-    router.get('/posts/:postId', isNotLoggedIn, (req, res) => { //!create individual page template
-        const requestedPost = req.params.postId
+    router.get('/posts/:postId', isNotLoggedIn, async(req, res) => { //!create individual page template
+        const requestedPostId = req.params.postId
 
+        try {
+            let postToShowData = await knex('posts').where({id:requestedPostId}).select({
+            postId: 'posts.id',
+            postTitle: 'posts.postTitle',
+            postContent: 'posts.postContent',
+            postAddress: 'posts.postAddress',
+            received_fav: 'posts.received_fav',
+            received_comments: 'posts.received_comments',
+            users_id: 'posts.users_id',
+            users_username: 'posts.users_username',
+            users_userPhoto: 'posts.users_userPhoto',
+            postLat: 'posts.postLat',
+            postLng: 'posts.postLng',
+            postPhoto: 'posts.postPhoto',
+            postDate: 'posts.postDate'
+            })
+
+            let userToCommentData = await knex("users").where({id:req.user.id}).select({
+                username: 'users.username',
+                userPhoto: 'users.userPhoto'
+            })
+            // console.trace(userData)
+
+            let commentsData = await knex('comments').where({ posts_id: postToShowData[0].postId }).select({
+                commentId: 'comments.id',
+                poster_id: 'comments.users_id',
+                poster_userPhoto: 'comments.users_userPhoto',
+                poster_username: 'comments.users_username',
+                content: 'comments.commentContent',
+                postId: 'comments.posts_id'
+            })
+
+            res.render('post',{postData: postToShowData[0], userData:userToCommentData[0], commentsData: commentsData}); 
+            
+        } catch (err) {
+            console.trace(err);
+            res.redirect('/error')
+        }
+    })
+
+    //writing a comment
+    router.post("/postComment/:postId", isNotLoggedIn, async (req, res)=>{
+        const postId = req.params.postId;
+        console.trace(postId)
+        try {
+            let posterData = await knex("users").select({
+                username: 'users.username',
+                userPhoto: 'users.userPhoto',
+            }).where({ id: req.user.id }).returning(['username', 'userPhoto'])
+            console.trace(posterData)
+           
+            let newComment = {
+                users_id: req.user.id,
+                users_userPhoto: posterData[0].userPhoto,
+                users_username: posterData[0].username,
+                commentContent: req.body.commentContent,
+                posts_id: postId
+            }
+            let commentData = await knex('comments').insert(newComment).returning("posts_id");
+            
+            await knex("posts").where('id','=',commentData[0]).increment('received_comments',1)
+
+            res.redirect(`/posts/${commentData}`)
+
+        } catch (err) {
+            console.trace(err);
+            res.redirect('/error')
+        }
     })
 
     //error page
@@ -166,7 +234,6 @@ module.exports = (express) => {
                         password: hashedPassword,
                         email: email,
                         userPhoto: "../assets/png/049-worldwide.png", 
-                        number_of_posts: 0,
                         points_received: 0,
                         points_redeemed: 0,
                         admin: false
@@ -234,7 +301,6 @@ module.exports = (express) => {
     //tap favourite
     router.post('/posts/fav/:postId', isNotLoggedIn,async(req, res)=> {
         //console.trace(req.params);
-    
         try {
             //write into favposts table
             let favPost = {
@@ -259,7 +325,6 @@ module.exports = (express) => {
 
     router.post('/posts/unfav/:postId', isNotLoggedIn, async (req, res) => {
         //console.trace(req.params);
-
         try {
             //write into favposts table
             let unFavPost = {

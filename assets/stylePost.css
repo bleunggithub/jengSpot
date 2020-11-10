@@ -55,17 +55,18 @@ nav {
 	left: -15vh;
 }
 /* content */
-.outerDBContainer {
+.outerPostContainer {
 	margin: 12vh 0;
 }
 
 /* user details section */
-/* .fixedWrapper {
+.fixedWrapper {
 	position: fixed;
-} */
+	width: 100%;
+}
 .userPhoto {
 	border-radius: 50%;
-	width: 6vw;
+	width: 3vw;
 }
 .userDetails {
 	display: flex;
@@ -76,10 +77,7 @@ nav {
 .username {
 	text-shadow: 2px 2px #494949;
 }
-.points {
-	font-size: 0.9em;
-	text-shadow: 1px 1px #494949;
-}
+
 .userPhotoDiv,
 .userTextDiv {
 	padding: 0;
@@ -102,41 +100,23 @@ nav {
 }
 
 /* write post form */
-.writePost {
+.writeComment {
 	background-color: #fff;
 	/* box-shadow: 6px 6px #494949; */
 	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
 	text-align: right;
 }
 
-#postTitle,
-#postContent,
-#postAddress {
+#commentContent {
 	width: 100%;
 	margin-top: 1em;
 	border: none;
 	border-bottom: 1px solid #494949;
-}
-
-#postContent {
 	height: 120px;
 }
 
-/* latlng of map */
-#postLat,
-#postLng {
-	/* visibility: hidden; */
-	display: none;
-}
-#postMap {
-	margin-top: 1em;
-	background-color: #494949; /*for visibility*/
-	width: 100%;
-	height: 170px;
-}
-
 /* submit btn */
-#submitPost {
+#submitComment {
 	margin: 10px;
 	background-color: #494949;
 	color: #fff;
@@ -145,58 +125,10 @@ nav {
 	transition: all 0.2s ease-in-out;
 }
 
-#submitPost:hover {
+#submitComment:hover {
 	background: white;
 	border: 1px solid #fff;
 	color: #494949;
-}
-
-/* choose photo */
-.selectedFileText {
-	text-align: left;
-}
-
-#selected {
-	text-align: left;
-	display: inline-block;
-	max-width: 15vw;
-	font-size: 0.7em;
-	color: #494949;
-	padding-top: 10px;
-}
-.choosePhoto {
-	background-color: #494949;
-	color: #fff;
-	padding: 3px 5px;
-	cursor: pointer;
-	transition: all 0.2s ease-in-out;
-}
-.choosePhoto:hover {
-	background: white;
-	color: #494949;
-}
-
-input[type="file"] {
-	display: none;
-}
-
-#postPhotoUrl {
-	display: none;
-}
-
-/* post selectors */
-.selectors {
-	display: flex;
-	flex-wrap: nowrap;
-	align-items: center;
-	justify-content: space-between;
-	padding-top: 2vh;
-}
-#postWhatSelector,
-#postWhereSelector {
-	font-size: 0.8em;
-	width: 50%;
-	margin-bottom: 0.8em;
 }
 
 /* trending post */
@@ -228,16 +160,21 @@ input[type="file"] {
 .counters {
 	font-size: 1.1em;
 	display: flex;
-	justify-content: space-between;
+	justify-content: flex-end;
 	margin-bottom: 0.8em;
 }
-.counters a {
-	color: #494949;
-	text-decoration: none;
+
+#postMap {
+	margin-top: 1em;
+	background-color: #494949; /*for visibility*/
+	width: 100%;
+	height: 250px;
 }
-/* .ifFav {
+
+#postLat,
+#postLng {
 	display: none;
-} */
+}
 
 .trendingPhotoDiv {
 	padding: 0;
@@ -248,6 +185,47 @@ input[type="file"] {
 	width: 100%;
 	height: 100%;
 	object-fit: cover;
+}
+
+/* comments */
+.commenterPhoto {
+	border-radius: 50%;
+	width: 3vw;
+	margin-left: 1vw;
+}
+.commenterDetails {
+	display: flex;
+	align-items: center;
+	align-content: flex-start;
+	margin-bottom: 1em;
+}
+.commenterUsername {
+	font-size: 1.3em;
+}
+
+.commenterPhotoDiv,
+.commenterTextDiv {
+	padding: 0;
+}
+.comments {
+	width: 100%;
+}
+.comments h5 {
+	margin: 0 0 5vh 5vw;
+	text-shadow: 2px 2px #494949;
+}
+.commentDiv {
+	width: 100%;
+	height: 15vh;
+	background-color: #fff;
+	margin: 0 0 5vh 6.6vmin;
+	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+	color: #494949;
+	font-size: 14px;
+	padding: 20px;
+}
+.userCommentsContent {
+	padding-left: 0;
 }
 
 /* media query  */

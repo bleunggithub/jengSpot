@@ -216,9 +216,9 @@
 								/>
 							</div>
 							<div class="col-lg-9 col-md-9 col-sm-9 trendingUserContentDiv">
-								<p class="trendingUsername">
+								<h6 class="trendingUsername">
 									<strong><%= post.users_username%></strong>
-								</p>
+								</h6>
 								<p class="trendingDate"><%= post.postDate%></p>
 								<h6 class="trendingTitle"><%= post.postTitle%></h6>
 								<p class="trendingContent"><%= post.postContent%></p>
@@ -239,14 +239,14 @@
 										&nbsp; <%= post.received_comments %>
 									</span>
 									<span>
-										<a href="/posts/<%-post.postId%>">
+										<a href="/posts/<%-post.postId%>"></a>
 											<i class="fas fa-globe-asia"></i>
 										</a>
 									</span>
 								</div>
 							</div>
 							<br />
-							<div class="row">
+							<div class="container-fluid">
 								<div class="col-12 trendingPhotoDiv">
 									<img src="<%- post.postPhoto%>" class="trendingPhoto" />
 								</div>
