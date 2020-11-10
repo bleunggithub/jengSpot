@@ -2,9 +2,9 @@
 exports.up = function(knex) {
     return knex.schema
     .createTable('posts', function(table) {     
-      table.increments('id');
+      table.increments('id').primary();
       table.string('postTitle');
-      table.string('postContent');
+      table.string('postContent',500);
       table.string('postAddress');
       table.string('postDo');
       table.string('postGo');      
@@ -13,9 +13,10 @@ exports.up = function(knex) {
       table.string('postPhoto');
       table.integer('received_fav');
       table.integer('received_comments');
-      table.integer('user_id');
-      table.foreign('user_id').references('users.id');                    
-      table.timestamps(true, true);
+      table.integer('users_id');
+      table.string('users_username');
+      table.string('users_userPhoto');
+      table.string('postDate')
     }); 
 };
 

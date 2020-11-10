@@ -19,10 +19,12 @@
 			crossorigin="anonymous"
 		/>
 		<!-- font awesome  -->
-		<script
-			src="https://kit.fontawesome.com/fdd79be92b.js"
+		<link
+			rel="stylesheet"
+			href="https://use.fontawesome.com/releases/v5.15.1/css/all.css"
+			integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp"
 			crossorigin="anonymous"
-		></script>
+		/>
 		<!-- Google font -->
 		<link
 			href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap"
@@ -96,14 +98,14 @@
 					<div class="col-12 userDetails">
 						<div class="col-3 userPhotoDiv">
 							<img
-								src="../assets/user/haileyJensen.jpg"
+								src="<%- userData.userPhoto%>"
 								alt="userPhoto"
 								class="userPhoto"
 							/>
 						</div>
 						<div class="col-4 userTextDiv">
-							<h5 class="username">HaileyJensen</h5>
-							<p class="points">Gems earned: 240</p>
+							<h5 class="username"><%= userData.username %></h5>
+							<p class="points">Gems earned: <%= userData.points_received %></p>
 						</div>
 						<div class="col-5 filters">
 							<form action="#" method="POST">
@@ -132,6 +134,7 @@
 								name="postTitle"
 								id="postTitle"
 								placeholder="TITLE"
+								required
 							/>
 							<br />
 							<textarea
@@ -139,6 +142,7 @@
 								id="postContent"
 								maxlength="500"
 								placeholder="WHERE DID YOU GO? SHARE WITH US! (500 characters)"
+								required
 							></textarea>
 							<br />
 							<input
@@ -146,16 +150,17 @@
 								name="postAddress"
 								id="postAddress"
 								placeholder="ADDRESS"
+								required
 							/>
 							<div class="selectors">
-								<select name="postDo" id="postWhatSelector">
+								<select name="postDo" id="postWhatSelector" required>
 									<optgroup label="What did you do?">
 										<option value="whatToEat">Eat</option>
 										<option value="whatToSee">See</option>
 										<option value="others">It was something else!</option>
 									</optgroup>
 								</select>
-								<select name="postGo" id="postWhereSelector">
+								<select name="postGo" id="postWhereSelector" required>
 									<optgroup label="Where did you go?">
 										<option value="hkIsland">Hong Kong Island</option>
 										<option value="kowloon">Kowloon</option>
@@ -199,118 +204,56 @@
 				</div>
 				<!-- dashboard right content -->
 				<div class="col-lg-5 col-md-5 col-sm-10 dashboardRight">
+					<% postData.forEach((post)=>{ %>
+
 					<div class="col-12 container-fluid trendingPost">
 						<div class="row">
 							<div class="col-lg-2 col-md-2 col-sm-2 trendingUserPhotoDiv">
 								<img
-									src="../assets/user/aliciaMason.jpg"
+									src="<%- post.users_userPhoto%>"
 									alt="userPhoto"
 									class="trendingUserPhoto"
 								/>
 							</div>
 							<div class="col-lg-9 col-md-9 col-sm-9 trendingUserContentDiv">
 								<p class="trendingUsername">
-									<strong>aliciamason</strong>
+									<strong><%= post.users_username%></strong>
 								</p>
-								<p class="trendingDate">29 October 2020</p>
-								<h6 class="trendingTitle">Hong Kong Tramways</h6>
-								<p class="trendingContent">
-									The HK trams are also called “ding ding” because of the sound
-									of the warning noise made to notify pedestrians of its
-									presence is one of the moving landmarks of Hong Kong. It has
-									been a form of commuter transport since 1904, and it’s a great
-									way of travelling with locals who are in no hurry to go from
-									point A to point B. Did you know that you could rent an
-									open-top vintage tram for private parties? * Mind you, the HK
-									trams only run on HK Island!
-								</p>
+								<p class="trendingDate"><%= post.postDate%></p>
+								<h6 class="trendingTitle"><%= post.postTitle%></h6>
+								<p class="trendingContent"><%= post.postContent%></p>
 								<br />
 								<div class="col-12 counters">
 									<span>
-										<a href="#"><i class="fas fa-heart"></i></a>
-										&nbsp; 5
+										<i
+											class="fas fa-heart"
+											id="<%-post.postId%>"
+											style="cursor: pointer"
+										></i>
+									</span>
+
+									<span>
+										<a href="/posts/<%-post.postId%>">
+											<i class="fas fa-comment-alt"></i>
+										</a>
+										&nbsp; <%= post.received_comments %>
 									</span>
 									<span>
-										<a href="#"><i class="fas fa-comment-alt"></i></a>
-										&nbsp; 2
-									</span>
-									<span>
-										<a href="#">
-											<i class="fas fa-globe-asia" onclick="mapPopUp(this)"></i>
+										<a href="/posts/<%-post.postId%>">
+											<i class="fas fa-globe-asia"></i>
 										</a>
 									</span>
 								</div>
 							</div>
 							<br />
-							<!-- <div class="row">
-								<div class="col-12 trendingMapDiv">
-									<span onclick="mapPopUpClose()" class="closeBtn">
-										&#10005;
-									</span>
-									<div class="col-12 trendingMap">
-										
-									</div>
-								</div>
-							</div> -->
 							<div class="row">
 								<div class="col-12 trendingPhotoDiv">
-									<img
-										src="../assets/photos/HKtram.jpg"
-										class="trendingPhoto"
-									/>
+									<img src="<%- post.postPhoto%>" class="trendingPhoto" />
 								</div>
 							</div>
 						</div>
 					</div>
-					<div class="col-12 trendingPost">
-						<div class="row">
-							<div class="col-lg-2 col-md-2 col-sm-2 trendingUserPhotoDiv">
-								<img
-									src="../assets/user/ronnieCarter.jpg"
-									alt="userPhoto"
-									class="trendingUserPhoto"
-								/>
-							</div>
-							<div class="col-lg-9 col-md-9 col-sm-9 trendingUserContentDiv">
-								<p class="trendingUsername">
-									<strong>ronnie1998</strong>
-								</p>
-								<p class="trendingDate">29 October 2020</p>
-								<h6 class="trendingTitle">
-									The Coolest neighbourhood: Sham Shui Po
-								</h6>
-								<p class="trendingContent">
-									My favourite place to take visitors to is Sham Shui Po, a Hong
-									Kong hidden gem. This colourful Kowloon locality is one of the
-									poorest of all the districts in Hong Kong and provides a stark
-									contrast to the glitz and glam of the Central skyscrapers.
-									Each street specialises in different goods, from kids clothes
-									and suitcases, decorations to match the season, electronics of
-									every kind, craft and jewelry making supplies and every fabric
-									under the sun.
-								</p>
-								<br />
-								<div class="col-12 counters">
-									<span>
-										<a href="#"><i class="fas fa-heart"></i></a>
-										&nbsp; 8
-									</span>
-									<span>
-										<a href="#"><i class="fas fa-comment-alt"></i></a>
-										&nbsp; 3
-									</span>
-									<span>
-										<a href="#"><i class="fas fa-globe-asia"></i></a>
-									</span>
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-12 trendingPhotoDiv">
-									<img src="../assets/photos/ssp.jpg" class="trendingPhoto" />
-								</div>
-							</div>
-						</div>
-					</div>
+					<% }) %>
 				</div>
 			</div>
 		</div>
@@ -335,6 +278,7 @@
 		<!-- custom -->
 		<script src="../assets/frontend.js"></script>
 		<script src="../assets/frontendDashboard.js"></script>
+		<!-- google maps -->
 		<!-- Google Map-->
 		<script
 			defer

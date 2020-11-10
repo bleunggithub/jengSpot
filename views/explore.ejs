@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+		<title>JengSpot</title>
+
+		<!-- animate css -->
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css"
+		/>
+		<!-- bootstrap -->
+		<link
+			rel="stylesheet"
+			href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+			integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+			crossorigin="anonymous"
+		/>
+		<!-- font awesome  -->
+		<link
+			rel="stylesheet"
+			href="https://use.fontawesome.com/releases/v5.15.1/css/all.css"
+			integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp"
+			crossorigin="anonymous"
+		/>
+		<!-- Google font -->
+		<link
+			href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap"
+			rel="stylesheet"
+		/>
+		<link
+			href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&display=swap"
+			rel="stylesheet"
+		/>
+		<!-- custom -->
+		<link rel="stylesheet" type="text/css" href="../assets/styleExplore.css" />
+	</head>
+
+	<body>
+		<!-- navbar  -->
+		<nav class="navbar fixed-top navbar-expand-lg navbar-dark">
+			<button
+				class="navbar-toggler"
+				type="button"
+				data-toggle="collapse"
+				data-target="#navbarNav"
+				aria-controls="navbarNav"
+				aria-expanded="false"
+				aria-label="Toggle navigation"
+			>
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarNav">
+				<ul class="navbar-nav ml-auto" id="navbarList">
+					<li class="nav-item">
+						<a class="nav-link" href="#">Sign Up</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#">Log In</a>
+					</li>
+				</ul>
+			</div>
+		</nav>
+		<!-- clouds in the background -->
+		<div class="cloudDiv">
+			<img src="../assets/cloud.png" class="cloud" id="cloud1" />
+			<br />
+			<img src="../assets/cloud.png" class="cloud" id="cloud2" />
+			<br />
+			<img src="../assets/cloud.png" class="cloud" id="cloud3" />
+			<br />
+			<img src="../assets/cloud.png" class="cloud" id="cloud4" />
+			<br />
+			<img src="../assets/cloud.png" class="cloud" id="cloud5" />
+			<br />
+			<img src="../assets/cloud.png" class="cloud" id="cloud6" />
+			<br />
+		</div>
+
+		<!-- content -->
+		<div class="outerExploreContainer container-fluid">
+			<div class="exploreRow row justify-content-center">
+				<div class="col-lg-4 col-md-4 col-sm-10 exploreLeft">
+					<div class="fixedWrapper col-lg-4 col-md-4 col-sm-10">
+						<!-- sign up container -->
+						<div class="col-lg-12 col-md-12 col-sm-12 signUpContainer">
+							<div id="signUpDiv">
+								<div class="tabs">
+									<div class="tab-2">
+										<!-- sign up -->
+										<label for="tab2-1">Sign Up</label>
+										<input
+											id="tab2-1"
+											name="tabs-two"
+											type="radio"
+											checked="checked"
+										/>
+										<div>
+											<p id="signUpDivTitle"><strong>Sign up here!</strong></p>
+											<ul>
+												<% if(typeof errors != 'undefined') { %> <%
+												errors.forEach(errors =>{ %>
+												<li><%= errors.message %></li>
+												<% }) %> <% } %>
+											</ul>
+											<ul>
+												<% if(messages.error){ %>
+												<li><%= messages.error %></li>
+												<% } %>
+											</ul>
+											<ul>
+												<% if(messages.success_msg) { %>
+												<li><%= messages.success_msg %></li>
+												<% } %>
+											</ul>
+											<form action="/register" method="POST">
+												<input
+													type="text"
+													name="username"
+													id="username"
+													placeholder="USERNAME"
+													required
+												/>
+												<br />
+												<input
+													type="email"
+													name="email"
+													id="emailReg"
+													placeholder="EMAIL"
+													required
+												/>
+												<br />
+												<input
+													type="password"
+													name="password"
+													id="passwordReg"
+													placeholder="PASSWORD"
+													required
+												/>
+												<br />
+												<input
+													type="password"
+													name="confirmPassword"
+													id="confirmPassword"
+													placeholder="CONFIRM PASSWORD"
+													required
+												/>
+												<br />
+												<button type="submit" id="signUpBtn">Join Now</button>
+												<br />
+											</form>
+											<span class="oAuthSignUp">
+												<a href="/auth/google" id="googleOAuthSignUp">
+													<i class="fab fa-google"></i>
+												</a>
+												<a href="/auth/fb" id="fbOAuthSignUp">
+													<i class="fab fa-facebook-square"></i>
+												</a>
+											</span>
+											<span class="privacy">
+												By signing up, you agree to the
+												<a href="#">Terms</a>
+												and
+												<a href="#">Privacy Policy</a>
+												.
+											</span>
+										</div>
+									</div>
+									<div class="tab-2">
+										<!-- log in -->
+										<label for="tab2-2">Log In</label>
+										<input id="tab2-2" name="tabs-two" type="radio" />
+										<div>
+											<p id="logInDivTitle"><strong>Log in here!</strong></p>
+											<form action="/login" method="POST">
+												<input
+													type="email"
+													name="email"
+													id="emailLogin"
+													placeholder="EMAIL"
+													required
+												/>
+												<br />
+												<input
+													type="password"
+													name="password"
+													id="passwordLogin"
+													placeholder="PASSWORD"
+													required
+												/>
+												<br />
+												<button type="submit" id="logInBtn">Log In</button>
+												<br />
+											</form>
+											<span class="oAuthSignIn">
+												<a href="/auth/google" id="googleOAuthSignIn">
+													<i class="fab fa-google"></i>
+												</a>
+												<a href="/auth/fb" id="fbOAuthSignIn">
+													<i class="fab fa-facebook-square"></i>
+												</a>
+											</span>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- explore right content -->
+				<div class="col-lg-5 col-md-5 col-sm-10 exploreRight">
+					<% postData.forEach((post)=>{ %>
+
+					<div class="col-12 container-fluid trendingPost">
+						<div class="row">
+							<div class="col-lg-2 col-md-2 col-sm-2 trendingUserPhotoDiv">
+								<img
+									src="<%- post.users_userPhoto%>"
+									alt="userPhoto"
+									class="trendingUserPhoto"
+								/>
+							</div>
+							<div class="col-lg-9 col-md-9 col-sm-9 trendingUserContentDiv">
+								<p class="trendingUsername">
+									<strong><%= post.users_username%></strong>
+								</p>
+								<p class="trendingDate"><%= post.postDate%></p>
+								<h6 class="trendingTitle"><%= post.postTitle%></h6>
+								<p class="trendingContent"><%= post.postContent%></p>
+								<br />
+								<p>
+									<b>
+										<i class="far fa-arrow-alt-circle-left"></i>
+										&nbsp; Sign up or Log in to read more
+										<i class="far fa-heart" style="font-size: 0.7em"></i>
+									</b>
+								</p>
+								<br />
+								<div class="col-12 counters">
+									<span>
+										<i class="fas fa-heart"></i>
+										&nbsp; <%= post.received_fav %>
+									</span>
+									<span>
+										<i class="fas fa-comment-alt"></i>
+
+										&nbsp; <%= post.received_comments %>
+									</span>
+									<span>
+										<i class="fas fa-globe-asia"></i>
+									</span>
+								</div>
+							</div>
+							<br />
+							<div class="row">
+								<div class="col-12 trendingPhotoDiv">
+									<img src="<%- post.postPhoto%>" class="trendingPhoto" />
+								</div>
+							</div>
+						</div>
+					</div>
+					<% }) %>
+				</div>
+			</div>
+		</div>
+
+		<!-- smooth scroll -->
+		<script src="https://cdn.jsdelivr.net/gh/cferdinandi/smooth-scroll@15.0/dist/smooth-scroll.polyfills.min.js"></script>
+		<!-- jquery-->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<!-- bootstrap -->
+		<script
+			src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+			integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+			crossorigin="anonymous"
+		></script>
+		<script
+			src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+			integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+			crossorigin="anonymous"
+		></script>
+		<!-- GSAP -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js"></script>
+		<!-- custom -->
+		<script src="../assets/frontend.js"></script>
+	</body>
+	<!-- Icons made by <a href="http://www.freepik.com/" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/"
+    title="Flaticon"> www.flaticon.com</a> -->
+</html>

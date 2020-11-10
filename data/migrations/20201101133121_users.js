@@ -10,7 +10,10 @@ exports.up = function(knex, Promise) {
       table.string('fbId');
       table.string('userPhoto');
       table.integer('number_of_posts');
-      table.timestamps(true, true);      
+      table.integer('points_received');
+      table.integer('points_redeemed');
+      table.timestamps(true, true); 
+      table.boolean('admin');
     });    
 };
 

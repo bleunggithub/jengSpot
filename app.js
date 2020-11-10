@@ -1,7 +1,7 @@
 require("dotenv").config();
 const express = require("express");
 const app = express();
-const morgan = require('morgan');
+// const morgan = require('morgan');
 const path = require("path");
 const bodyParser = require("body-parser");
 const flash = require("express-flash");
@@ -20,7 +20,7 @@ app.use(session({
 
 
 //set up middleware
-app.use(morgan('combined'));
+// app.use(morgan('combined'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 

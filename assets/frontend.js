@@ -12,7 +12,4 @@ tl.to("#cloud3", { duration: "random(50,70)", x: window.innerWidth + 200, ease:"
 tl.to("#cloud4", { duration: "random(50,70)", x: window.innerWidth + 200, ease:"none" },"-=65"),
 tl.to("#cloud5", { duration: "random(50,70)", x: window.innerWidth + 200, ease: "none" }, "-=55"),
 tl.to("#cloud6", { duration: "random(50,60)", x: window.innerWidth + 200, ease:"none" },"-=50"),
-
-
-
 )

@@ -54,7 +54,7 @@ passport.use(new GoogleStrategy({
     userProfileURL: "https://www.googleapis.com/oauth2/v3/userinfo"
 }, async (accessToken, refreshToken, profile, done) => {
     try {
-      console.log("profile:" + profile)
+      // console.log("profile:" + profile)
       let usersGoogle = await knex("users").where({ googleId: profile.id });
 
       if (usersGoogle.length === 0) {
@@ -62,11 +62,14 @@ passport.use(new GoogleStrategy({
           username: profile.displayName,
           googleId: profile.id,
           userPhoto: profile.photos[0].value,
-          number_of_posts:0
+          number_of_posts: 0,
+          points_received: 0,
+          points_redeemed: 0,
+          admin: false
         }
         let userGId = await knex("users").insert(newUserGoogle).returning("id");
         newUserGoogle.id = userGId[0];
-        res.redirect('/dashboard')
+        return done(null, newUserGoogle);
       } else if (usersGoogle.length > 0){
         let userGoogle = usersGoogle[0];
         return done(null,userGoogle)
@@ -87,17 +90,22 @@ passport.use(new GoogleStrategy({
 }, async (accessToken, refreshToken, profile, done) => {
       try {
     console.log("profile: " + JSON.stringify(profile))
-            let usersFB = await knex("users").where({ fbId: profile.id });
+    let usersFB = await knex("users").where({ fbId: profile.id });
 
       if (usersFB.length === 0) {
         const newUserFB = {
           username: profile.displayName,
           fbId: profile.id,
-          number_of_posts:0
+          number_of_posts: 0,
+          userPhoto: "../assets/png/049-worldwide.png", 
+          number_of_posts: 0,
+          points_received: 0,
+          points_redeemed: 0,
+          admin: false
         }
         let userFBId = await knex("users").insert(newUserFB).returning("id");
         newUserFB.id = userFBId[0];
-        return res.redirect('/dashboard')
+        return done(null, userFBId);
       } else if (usersFB.length > 0){
         let userFB = usersFB[0];
         return done(null,userFB)
@@ -113,6 +121,7 @@ passport.use(new GoogleStrategy({
 
 //Serialise user
   passport.serializeUser((user, done) => {
+    console.trace(user)
     done(null, user.id);
   });
 
