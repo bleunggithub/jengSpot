@@ -96,10 +96,75 @@ module.exports = (express) => {
             console.trace(err)
             res.redirect('error')
         }
-
-
-        
     });
+
+    //dashboard filter
+    router.get('/dashboard/:select', isNotLoggedIn, async(req, res) => {
+        const userId = req.user.id;
+        const requestedPostCat = req.params.select;
+        console.trace(requestedPostCat)
+
+        //list of params 
+            //whatToSee
+            //whatToEat
+            //others
+            //hkIsland
+            //kowloon
+            //NT
+        try {
+            let userData = await knex("users").select({
+                username: 'users.username',
+                userPhoto: 'users.userPhoto',
+                points_received: 'users.points_received'
+            }).where({ id: req.user.id })
+            
+            // let postData = await knex('posts').select({
+            // postId: 'posts.id',
+            // postTitle: 'posts.postTitle',
+            // postContent: 'posts.postContent',
+            // postDo: 'posts.postDo',
+            // postGo: 'posts.postGo',
+            // postAddress: 'posts.postAddress',
+            // received_fav: 'posts.received_fav',
+            // received_comments: 'posts.received_comments',
+            // users_id: 'posts.users_id',
+            // users_username: 'posts.users_username',
+            // users_userPhoto: 'posts.users_userPhoto',
+            // postLat: 'posts.postLat',
+            // postLng: 'posts.postLng',
+            // postPhoto: 'posts.postPhoto',
+            // postDate: 'posts.postDate'
+            // }).orderBy('id', 'desc')
+
+            //whatToSee
+            let whatToData = await knex('posts').where({ postDo: requestedPostCat }).orWhere({postGo: requestedPostCat}).select({
+            postId: 'posts.id',
+            postTitle: 'posts.postTitle',
+            postContent: 'posts.postContent',
+            postDo: 'posts.postDo',
+            postGo: 'posts.postGo',
+            postAddress: 'posts.postAddress',
+            received_fav: 'posts.received_fav',
+            received_comments: 'posts.received_comments',
+            users_id: 'posts.users_id',
+            users_username: 'posts.users_username',
+            users_userPhoto: 'posts.users_userPhoto',
+            postLat: 'posts.postLat',
+            postLng: 'posts.postLng',
+            postPhoto: 'posts.postPhoto',
+            postDate: 'posts.postDate'
+            }).orderBy('id', 'desc')
+        
+
+
+            
+            res.render('dashboard',{param: requestedPostCat, postData: whatToData, userData:userData[0]}); 
+        } catch(err) {
+            console.trace(err)
+            res.redirect('error')
+        }
+        
+    })
 
     //setting page
     router.get('/settings', isNotLoggedIn, (req, res) => {

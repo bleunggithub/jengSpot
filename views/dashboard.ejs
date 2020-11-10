@@ -109,20 +109,20 @@
 						</div>
 						<div class="col-5 filters">
 							<form action="#" method="POST">
-								<select name="What do you want to do?" id="whatSelector">
-									<option value="whatToSee" selected>What to see?</option>
-									<option value="whatToEat">What to eat?</option>
-									<option value="others">Let's do something else</option>
-									<option value="upForAnything">I am up for anything!</option>
+								<select name="What do you want to do?" id="whatSelector" onChange="location = this.options[this.selectedIndex].value;">
+									<option value="#" selected>What do you want to do?</option>
+									<option value="/dashboard/whatToSee">What to see?</option>
+									<option value="/dashboard/whatToEat">What to eat?</option>
+									<option value="/dashboard/others">Let's do something else</option>
 								</select>
 							</form>
 
 							<form action="#" method="POST">
-								<select name="Where?" id="whereSelector">
-									<option value="hkIsland" selected>Hong Kong Island</option>
-									<option value="kowloon">Kowloon</option>
-									<option value="NT">New Territories</option>
-									<option value="upForAnywhere">Take me anywhere!</option>
+								<select name="Where?" id="whereSelector"  onChange="location = this.options[this.selectedIndex].value;">
+									<option value="#" selected>Where do you want to </option>
+									<option value="/dashboard/hkIsland" >Hong Kong Island</option>
+									<option value="/dashboard/kowloon">Kowloon</option>
+									<option value="/dashboard/NT">New Territories</option>
 								</select>
 							</form>
 						</div>
