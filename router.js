@@ -59,7 +59,7 @@ module.exports = (express) => {
             res.render("explore", { postData: postData }) 
         } catch (err) {
             console.trace(err)
-            res.redirect('error')
+            res.redirect('/error')
         }
         
     })
@@ -94,7 +94,7 @@ module.exports = (express) => {
             res.render('dashboard',{postData: postData, userData:userData[0]}); 
         } catch(err) {
             console.trace(err)
-            res.redirect('error')
+            res.redirect('/error')
         }
     });
 
@@ -117,26 +117,7 @@ module.exports = (express) => {
                 userPhoto: 'users.userPhoto',
                 points_received: 'users.points_received'
             }).where({ id: req.user.id })
-            
-            // let postData = await knex('posts').select({
-            // postId: 'posts.id',
-            // postTitle: 'posts.postTitle',
-            // postContent: 'posts.postContent',
-            // postDo: 'posts.postDo',
-            // postGo: 'posts.postGo',
-            // postAddress: 'posts.postAddress',
-            // received_fav: 'posts.received_fav',
-            // received_comments: 'posts.received_comments',
-            // users_id: 'posts.users_id',
-            // users_username: 'posts.users_username',
-            // users_userPhoto: 'posts.users_userPhoto',
-            // postLat: 'posts.postLat',
-            // postLng: 'posts.postLng',
-            // postPhoto: 'posts.postPhoto',
-            // postDate: 'posts.postDate'
-            // }).orderBy('id', 'desc')
 
-            //whatToSee
             let whatToData = await knex('posts').where({ postDo: requestedPostCat }).orWhere({postGo: requestedPostCat}).select({
             postId: 'posts.id',
             postTitle: 'posts.postTitle',
@@ -154,22 +135,76 @@ module.exports = (express) => {
             postPhoto: 'posts.postPhoto',
             postDate: 'posts.postDate'
             }).orderBy('id', 'desc')
-        
 
-
-            
             res.render('dashboard',{param: requestedPostCat, postData: whatToData, userData:userData[0]}); 
         } catch(err) {
             console.trace(err)
-            res.redirect('error')
+            res.redirect('/error')
         }
         
     })
 
     //setting page
-    router.get('/settings', isNotLoggedIn, (req, res) => {
-        res.render("settings") //! 1)create settings page, 2) think about what items we need to pull from the database
+    router.get('/settings', isNotLoggedIn, async (req, res) => {
+        try {
+            let userData = await knex("users").select({
+                username: 'users.username',
+                email: 'users.email',
+                points_received: 'users.points_received',
+                points_redeemed: 'users.points_redeemed',
+                userPhoto: 'users.userPhoto'
+            }).where({ id: req.user.id })
+
+            res.render("settings", { userData:userData[0] })
+
+        } catch (err){
+            console.trace(err)
+            res.redirect('/error')
+        }
     })
+
+    router.post('/settings/:change', isNotLoggedIn, async (req, res) => {
+        let requestChange = req.params.change;
+        console.trace(requestChange)
+
+        try {//password
+            if (requestChange == 'password') {
+                let passwordToChange = req.body.password;
+                let userId = req.user.id;
+                let hashedPassword = await bcrypt.hash(passwordToChange, 10);
+                console.log(hashedPassword);
+
+                await knex('users').where({id:userId}).update({password: hashedPassword})
+                res.redirect('/settings')
+
+            } else if (requestChange == 'username') {
+                let usernameToChange = req.body.username;
+                let userId = req.user.id;
+
+                await knex('users').where({id:userId}).update({username: usernameToChange})
+                res.redirect('/settings')
+
+            } else if (requestChange == 'email') {
+                let emailToChange = req.body.email;
+                let userId = req.user.id;
+                
+                await knex('users').where({id:userId}).update({email: emailToChange})
+                res.redirect('/settings')
+
+            } else if (requestChange == 'userPhoto') {
+                let photoToChange = req.body.userPhoto
+                let userId = req.user.id;
+                
+                await knex('users').where({id:userId}).update({userPhoto: photoToChange})
+                res.redirect('/settings')
+            } else {
+                res.redirect("/error")
+            }} catch (err) {
+            console.trace(err)
+            res.redirect('/error')
+        }
+    })
+
 
     //rewards page 
     router.get('/rewards', isNotLoggedIn, (req, res) => {
@@ -224,7 +259,7 @@ module.exports = (express) => {
             
     } catch (err) {
             console.trace(err)
-            res.redirect('error')
+            res.redirect('/error')
         }
         
     })
@@ -279,7 +314,7 @@ module.exports = (express) => {
             
     } catch (err) {
             console.trace(err)
-            res.redirect('error')
+            res.redirect('/error')
         }
         
     })

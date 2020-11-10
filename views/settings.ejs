@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<link rel="icon" type="image/png" href=”../assets/app_logo.png”/>
+		<link rel="shortcut icon" type="image/png" href=”../assets/app_logo.png”/>
 
 		<title>JengSpot</title>
 
@@ -36,7 +36,8 @@
 			rel="stylesheet"
 		/>
 		<!-- custom -->
-		<link rel="stylesheet" type="text/css" href="../assets/stylePost.css" />
+		<!-- dashboard  -->
+		<link rel="stylesheet" type="text/css" href="../assets/styleSettings.css" />
 	</head>
 
 	<body>
@@ -55,9 +56,6 @@
 			</button>
 			<div class="collapse navbar-collapse" id="navbarNav">
 				<ul class="navbar-nav ml-auto" id="navbarList">
-					<li class="nav-item">
-						<a class="nav-link" href="/dashboard">Trending</a>
-					</li>
 					<!-- <li class="nav-item">
 						<a class="nav-link" href="/rewards">Rewards</a>
 					</li> -->
@@ -65,7 +63,7 @@
 						<a class="nav-link" href="/posts">Posts</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="/settings">Settings</a>
+						<a class="nav-link" href="/dashboard">Trending</a>
 					</li>
 					<li class="nav-item">
 						<a class="nav-link" href="/logout">Log Out</a>
@@ -90,116 +88,121 @@
 		</div>
 
 		<!-- content -->
-		<div class="outerPostContainer container-fluid">
-			<div class="postRow row justify-content-center">
-				<div class="col-lg-4 col-md-4 col-sm-10 postLeft">
+		<div class="outerDBContainer container-fluid">
+			<div class="dashboardRow row justify-content-center">
+				<div class="col-lg-4 col-md-4 col-sm-10 dashboardLeft">
 					<div class="fixedWrapper col-lg-4 col-md-4 col-sm-10">
 						<div class="col-12 userDetails">
-							<div class="col-2 userPhotoDiv">
+							<div class="col-3 userPhotoDiv">
 								<img
 									src="<%- userData.userPhoto%>"
 									alt="userPhoto"
 									class="userPhoto"
 								/>
 							</div>
-							<div class="col-5 userTextDiv">
-								<h5 class="username"><%= userData.username %></h5>
-							</div>
-						</div>
-						<div class="col-12 writeComment">
-							<form action="/postComment/<%- postData.postId%>" method="POST">
-								<textarea
-									name="commentContent"
-									id="commentContent"
-									maxlength="255"
-									placeholder="WRITE A COMMENT (255 characters)"
-									required
-								></textarea>
-								<br />
 
-								<div class="row">
-									<div class="col-12">
-										<button type="submit" id="submitComment">Submit</button>
-										<br />
-									</div>
-								</div>
+							<div class="col-4 userTextDiv">
+								<h5 class="username"><%= userData.username %></h5>
+								<p class="points">
+									Gems earned: <%= userData.points_received %>
+								</p>
+							</div>
+							<div class="col-5 filters"></div>
+						</div>
+
+						<div class="col-12 changeDetails">
+							<form action="/settings/username" method="POST">
+								<input
+									type="text"
+									name="username"
+									id="username"
+									placeholder="Update Your Username"
+									required
+								/>
+								<button type="submit" class="submit">Update</button>
 							</form>
+							<br />
+							<form action="/settings/email" method="POST">
+								<input
+									type="email"
+									name="email"
+									id="email"
+									placeholder="Update Your Email"
+									required
+								/>
+								<button type="submit" class="submit">Update</button>
+							</form>
+							<br />
+							<form action="/settings/password" method="POST">
+								<input
+									type="password"
+									name="password"
+									id="password"
+									placeholder="Update Your Password"
+									required
+								/>
+								<button type="submit" class="submit">Update</button>
+							</form>
+							<br />
+							<br />
+							<div class="row">
+								<div class="col-5 selectedFileText">
+									<div id="selected"></div>
+								</div>
+								<div class="col-7">
+									<form action="/settings/userPhoto" method="POST">
+										<label class="button choosePhoto" for="postPhoto">
+											Pick a Photo
+										</label>
+										<input
+											type="file"
+											id="postPhoto"
+											onchange="displayFile()"
+											accept="image/jpeg"
+										/>
+										<input
+											type="text"
+											name="userPhoto"
+											id="postPhotoUrl"
+											value=""
+										/>
+
+										<button type="submit" class="submit">Update</button>
+									</form>
+									<br />
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
-				<!-- post right content -->
-				<div class="col-lg-6 col-md-6 col-sm-10 postRight">
+				<!-- dashboard right content -->
+				<div class="col-lg-5 col-md-5 col-sm-10 dashboardRight">
 					<div class="col-12 container-fluid trendingPost">
-						<div class="row">
-							<div class="col-lg-2 col-md-2 col-sm-2 trendingUserPhotoDiv">
+						<div class="row justify-content-center">
+							<div class="col-lg-12 col-md-12 col-sm-12 trendingUserPhotoDiv">
 								<img
-									src="<%- postData.users_userPhoto%>"
+									src="<%- userData.userPhoto%>"
 									alt="userPhoto"
-									class="trendingUserPhoto"
+									class="currentUserPhoto"
 								/>
 							</div>
-							<div class="col-lg-9 col-md-9 col-sm-9 trendingUserContentDiv">
-								<h6 class="trendingUsername">
-									<strong><%= postData.users_username%></strong>
-								</h6>
-								<p class="trendingDate"><%= postData.postDate%></p>
-								<h6 class="trendingTitle"><%= postData.postTitle%></h6>
-								<p class="trendingContent"><%= postData.postContent%></p>
-								<p id="postLat"><%= postData.postLat%></p>
-								<p id="postLng"><%= postData.postLng%></p>
+							<div class="col-lg-12 col-md-12 col-sm-12 trendingUserContentDiv">
+								<p style="color: #a8a8a8">Your username</p>
+								<h5 class="trendingUsername"><%= userData.username%></h5>
+								<br />
+								<p style="color: #a8a8a8">Your email</p>
+								<h5 class="trendingUsername"><%= userData.email%></h5>
 								<br />
 
-								<div id="postMap"></div>
-
+								<p style="color: #a8a8a8">Gems received</p>
+								<h5 class="trendingUsername"><%= userData.points_received%></h5>
 								<br />
-								<div class="col-12 counters">
-									<span>
-										<i class="fas fa-heart"></i>
-										&nbsp; <%= postData.received_fav %>
-									</span>
-									&nbsp;&nbsp;&nbsp;
-									<span>
-										<i class="fas fa-comment-alt"></i>
 
-										&nbsp; <%= postData.received_comments %>
-									</span>
-								</div>
-							</div>
-							<br />
-							<div class="container-fluid">
-								<div class="col-12 trendingPhotoDiv">
-									<img src="<%- postData.postPhoto%>" class="trendingPhoto" />
-								</div>
+								<p style="color: #a8a8a8">Gems redeemed</p>
+								<h5 class="trendingUsername"><%= userData.points_redeemed%></h5>
+								<br />
 							</div>
 						</div>
-					</div>
-					<div class="row comments">
-						<% if(typeof commentsData == 'undefined') { %>
-						<h5>Comments</h5>
-						<br />
-						<% } else { %> <% commentsData.forEach((comment) => { %>
-						<div class="col-12 commentDiv">
-							<div class="row justify-content-left userComments">
-								<div class="col-1 commenterPhotoDiv">
-									<img
-										src="<%- comment.poster_userPhoto%>"
-										alt="userPhoto"
-										class="commenterPhoto"
-									/>
-								</div>
-								<div class="col-8">
-									<div class="col-5 commenterTextDiv">
-										<p class="commenterUsername">
-											<%= comment.poster_username %>
-										</p>
-										<div class="col-12 userCommentsContent">
-											<p><%= comment.content %></p>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<% }) %> <% } %>
 					</div>
 				</div>
 			</div>
@@ -224,33 +227,7 @@
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js"></script>
 		<!-- custom -->
 		<script src="../assets/frontend.js"></script>
-		<!-- Google Map-->
-		<script
-			defer
-			src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB77Ifdt8J_FbKIlSLystbif9l7oEdliUg&callback=initMap"
-		></script>
-		<script>
-			//Google Map
-			let marker;
-			const postLat = document.getElementById("postLat").innerHTML;
-			const postLng = document.getElementById("postLng").innerHTML;
-			const positionPinned = { lat: +postLat, lng: +postLng };
-
-			function initMap() {
-				let options = {
-					zoom: 16,
-					center: { lat: +postLat, lng: +postLng },
-				};
-				let map = new google.maps.Map(
-					document.getElementById("postMap"),
-					options
-				);
-				marker = new google.maps.Marker({
-					position: positionPinned,
-					map: map,
-				});
-			}
-		</script>
+		<script src="../assets/frontendSettings.js"></script>
 	</body>
 	<!-- Icons made by <a href="http://www.freepik.com/" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/"
     title="Flaticon"> www.flaticon.com</a> -->
