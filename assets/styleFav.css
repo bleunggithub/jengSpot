@@ -86,27 +86,28 @@ nav {
 }
 
 /* filters */
-.filters {
+.filter {
 	display: flex;
-	flex-wrap: wrap;
-	align-items: flex-end;
-	justify-content: flex-end;
+	flex-wrap: nowrap;
+	align-items: flex-start;
+	justify-content: flex-start;
 	font-size: 0.8em;
 	padding-right: 0;
 }
 
-#whatSelector,
-#whereSelector {
-	width: 150px;
+#whatSelector {
+	width: 250px;
 	margin-bottom: 0.8em;
 }
 
 /* write post form */
-.writePost {
-	background-color: #fff;
-	/* box-shadow: 6px 6px #494949; */
-	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
-	text-align: right;
+.ownPost {
+	/* background-color: #fff; */
+	/* box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23); */
+	text-align: left;
+	color: #494949;
+	margin-bottom: 5vh;
+	padding: 20px;
 }
 
 #postTitle,

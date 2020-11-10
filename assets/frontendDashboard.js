@@ -61,13 +61,13 @@ for (let i = 0; i < fav.length; i++){
             fetch(`/posts/fav/${e.target.id}`, {
             method: 'post',
             body: postId
-            })
+            }).then(()=>console.log('fav added'))
         } else {
             fav[i].style.color = "#494949";
             fetch(`/posts/unfav/${e.target.id}`, {
             method: 'post',
             body: postId
-            })
+            }).then(()=>console.log('fav removed'))
         }
         
 })

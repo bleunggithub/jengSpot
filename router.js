@@ -112,12 +112,115 @@ module.exports = (express) => {
     })
 
     //favourite/saved post page
-    router.get('/posts', isNotLoggedIn, (req, res) => {
-        res.render("posts") //! 1)create saved page, 2) think about what items we need to pull from the database, 3)this also includes user's own posts
+    router.get('/posts', isNotLoggedIn, async(req, res) => {
+        const userId = req.user.id;
+
+        try {
+            // own posts
+            let ownPostData = await knex('posts').where({ users_id: userId }).select({
+                postId: 'posts.id',
+                postTitle: 'posts.postTitle',
+                postContent: 'posts.postContent',
+                postAddress: 'posts.postAddress',
+                received_comments: 'posts.received_comments',
+                users_username: 'posts.users_username',
+                users_userPhoto: 'posts.users_userPhoto',
+                postPhoto: 'posts.postPhoto',
+                postDate: 'posts.postDate'
+            }).orderBy('id', 'desc')
+            // console.trace(ownPostData)
+
+            //favourited posts
+                let favPostId = await knex('favposts').where({users_id:userId}).select({
+                postId: 'favposts.posts_id'
+                }).returning(["posts_id"])
+                console.trace(favPostId); // [ {postId: 2}, {postId: 1} ]
+
+            var favData =[]
+                
+            for (i = 0; i < favPostId.length; i++) {
+                let temp = await knex('posts').where({ id: favPostId[i].postId }).select({
+                            postId: 'posts.id',
+                            postTitle: 'posts.postTitle',
+                    postContent: 'posts.postContent',
+                            postAddress: 'posts.postAddress',
+                            received_comments: 'posts.received_comments',
+                            users_username: 'posts.users_username',
+                            users_userPhoto: 'posts.users_userPhoto',
+                            postPhoto: 'posts.postPhoto',
+                            postDate: 'posts.postDate'
+                }).orderBy('id', 'desc');
+                favData.push(temp)
+            }
+
+                console.trace(favData); 
+ 
+                res.render("fav", { ownPost: ownPostData, favPost: favData }) //favData is an array
+            
+    } catch (err) {
+            console.trace(err)
+            res.redirect('error')
+        }
+        
+    })
+
+
+    router.get('/posts/:select', isNotLoggedIn, async(req, res) => {
+        const userId = req.user.id;
+        const requestedPostCat = req.params.select;
+        console.trace(requestedPostCat)
+
+        try {
+            // own posts
+            let ownPostData = await knex('posts').where({ users_id: userId }).select({
+                postId: 'posts.id',
+                postTitle: 'posts.postTitle',
+                postContent: 'posts.postContent',
+                postAddress: 'posts.postAddress',
+                received_comments: 'posts.received_comments',
+                users_username: 'posts.users_username',
+                users_userPhoto: 'posts.users_userPhoto',
+                postPhoto: 'posts.postPhoto',
+                postDate: 'posts.postDate'
+            }).orderBy('id', 'desc')
+            // console.trace(ownPostData)
+
+            //favourited posts
+                let favPostId = await knex('favposts').where({users_id:userId}).select({
+                postId: 'favposts.posts_id'
+                }).returning(["posts_id"])
+                console.trace(favPostId); // [ {postId: 2}, {postId: 1} ]
+
+            var favData =[]
+                
+            for (i = 0; i < favPostId.length; i++) {
+                let temp = await knex('posts').where({ id: favPostId[i].postId }).select({
+                            postId: 'posts.id',
+                            postTitle: 'posts.postTitle',
+                    postContent: 'posts.postContent',
+                            postAddress: 'posts.postAddress',
+                            received_comments: 'posts.received_comments',
+                            users_username: 'posts.users_username',
+                            users_userPhoto: 'posts.users_userPhoto',
+                            postPhoto: 'posts.postPhoto',
+                            postDate: 'posts.postDate'
+                }).orderBy('id', 'desc');
+                favData.push(temp)
+            }
+
+                console.trace(favData); 
+ 
+                res.render("fav", { param: requestedPostCat, ownPost: ownPostData, favPost: favData }) //favData is an array
+            
+    } catch (err) {
+            console.trace(err)
+            res.redirect('error')
+        }
+        
     })
     
     //create individual post page for details
-    router.get('/posts/:postId', isNotLoggedIn, async(req, res) => { //!create individual page template
+    router.get('/post/:postId', isNotLoggedIn, async(req, res) => { 
         const requestedPostId = req.params.postId
 
         try {
@@ -315,6 +418,7 @@ module.exports = (express) => {
             
             //from posts table, get post id (poster), write into users table, add 2 pts for receiving a like
             await knex("users").where('id', '=', posterRcvdFav[0]).increment('points_received', 2);
+            console.trace("fav added")
             res.end();
 
         } catch (err) {
@@ -338,6 +442,7 @@ module.exports = (express) => {
 
             //from posts table, get post id (poster), write into users table, deduct 2 pts 
             await knex("users").where('id', '=', posterRmFav[0]).decrement('points_received', 2);
+            console.trace("fav removed")
             res.end();
 
             

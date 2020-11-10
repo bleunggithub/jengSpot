@@ -39,7 +39,7 @@
 		<link
 			rel="stylesheet"
 			type="text/css"
-			href="../assets/styleDashboard.css"
+			href="../assets/styleFav.css"
 		/>
 	</head>
 
@@ -63,7 +63,7 @@
 						<a class="nav-link" href="/rewards">Rewards</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="/posts">Posts</a>
+						<a class="nav-link" href="/dashboard">Trending</a>
 					</li>
 					<li class="nav-item">
 						<a class="nav-link" href="/settings">Settings</a>
@@ -93,118 +93,95 @@
 		<!-- content -->
 		<div class="outerDBContainer container-fluid">
 			<div class="dashboardRow row justify-content-center">
-				<div class="col-lg-4 col-md-4 col-sm-10 dashboardLeft">
+				<div class="col-lg-3 col-md-3 col-sm-10 dashboardLeft">
 					<div class="fixedWrapper col-lg-4 col-md-4 col-sm-10">
 					<div class="col-12 userDetails">
 						<div class="col-3 userPhotoDiv">
 							<img
-								src="<%- userData.userPhoto%>"
+								src="<%- ownPost[0].users_userPhoto%>"
 								alt="userPhoto"
 								class="userPhoto"
 							/>
 						</div>
 						<div class="col-4 userTextDiv">
-							<h5 class="username"><%= userData.username %></h5>
-							<p class="points">Gems earned: <%= userData.points_received %></p>
-						</div>
-						<div class="col-5 filters">
-							<form action="#" method="POST">
-								<select name="What do you want to do?" id="whatSelector">
-									<option value="whatToSee" selected>What to see?</option>
-									<option value="whatToEat">What to eat?</option>
-									<option value="others">Let's do something else</option>
-									<option value="upForAnything">I am up for anything!</option>
-								</select>
-							</form>
-
-							<form action="#" method="POST">
-								<select name="Where?" id="whereSelector">
-									<option value="hkIsland" selected>Hong Kong Island</option>
-									<option value="kowloon">Kowloon</option>
-									<option value="NT">New Territories</option>
-									<option value="upForAnywhere">Take me anywhere!</option>
-								</select>
-							</form>
+							<h5 class="username"><%= ownPost[0].users_username %></h5>
 						</div>
 					</div>
-					<div class="col-12 writePost">
-						<form action="/writePost" method="POST">
-							<input
-								type="text"
-								name="postTitle"
-								id="postTitle"
-								placeholder="TITLE"
-								required
-							/>
-							<br />
-							<textarea
-								name="postContent"
-								id="postContent"
-								maxlength="500"
-								placeholder="WHERE DID YOU GO? SHARE WITH US! (500 characters)"
-								required
-							></textarea>
-							<br />
-							<input
-								type="text"
-								name="postAddress"
-								id="postAddress"
-								placeholder="ADDRESS"
-								required
-							/>
-							<div class="selectors">
-								<select name="postDo" id="postWhatSelector" required>
-									<optgroup label="What did you do?">
-										<option value="whatToEat">Eat</option>
-										<option value="whatToSee">See</option>
-										<option value="others">It was something else!</option>
-									</optgroup>
+					<div class="col-12 ownPost filter">
+
+							<form action="#" method="POST">
+								<select name="selectPost" id="whatSelector" onChange="location = this.options[this.selectedIndex].value;">
+
+									<option value="#" selected>What do you want to see?</option>
+									<option value="/posts/fav">Favourite</option>
+                                    <option value="/posts/ownPost">My Post</option>
+
 								</select>
-								<select name="postGo" id="postWhereSelector" required>
-									<optgroup label="Where did you go?">
-										<option value="hkIsland">Hong Kong Island</option>
-										<option value="kowloon">Kowloon</option>
-										<option value="NT">New Territories</option>
-									</optgroup>
-								</select>
-							</div>
-							<input type="text" name="postLat" id="postLat" value="" />
-							<input type="text" name="postLng" id="postLng" value="" />
+							</form>
 
-							<div id="postMap"></div>
-
-							<div class="row">
-								<div class="col-6 selectedFileText">
-									<div id="selected"></div>
-								</div>
-								<div class="col-6">
-									<label class="button choosePhoto" for="postPhoto">
-										Pick a Photo
-									</label>
-									<input
-										type="file"
-										id="postPhoto"
-										onchange="displayFile()"
-										accept="image/jpeg"
-									/>
-									<input
-										type="text"
-										name="postPhoto"
-										id="postPhotoUrl"
-										value=""
-									/>
-
-									<button type="submit" id="submitPost">Submit</button>
-									<br />
-								</div>
-							</div>
-						</form>
 					</div>
 					</div>
 				</div>
 				<!-- dashboard right content -->
 				<div class="col-lg-5 col-md-5 col-sm-10 dashboardRight">
-					<% postData.forEach((post)=>{ %>
+
+                    <% if (typeof param == 'undefined' || param == 'fav'){ %>
+                    
+					<% favPost.forEach((post)=>{ %>
+
+					<div class="col-12 container-fluid trendingPost">
+						<div class="row">
+							<div class="col-lg-2 col-md-2 col-sm-2 trendingUserPhotoDiv">
+								<img
+									src="<%- post[0].users_userPhoto%>"
+									alt="userPhoto"
+									class="trendingUserPhoto"
+								/>
+							</div>
+							<div class="col-lg-9 col-md-9 col-sm-9 trendingUserContentDiv">
+								<h6 class="trendingUsername">
+									<strong><%= post[0].users_username%></strong>
+								</h6>
+								<p class="trendingDate"><%= post[0].postDate%></p>
+								<h6 class="trendingTitle"><%= post[0].postTitle%></h6>
+								<p class="trendingContent"><%= post[0].postContent%></p>
+								<br />
+								<p class="trendingContent">Address: <%= post[0].postAddress%></p>
+<br />
+								<div class="col-12 counters">
+									<span>
+										<i
+											class="fas fa-heart"
+											id="<%-post[0].postId%>"
+											style="cursor: pointer"
+										></i>
+									</span>
+
+									<span>
+										<a href="/post/<%-post[0].postId%>">
+											<i class="fas fa-comment-alt"></i>
+										</a>
+										&nbsp; <%= post[0].received_comments %>
+									</span>
+									<span>
+										<a href="/post/<%-post[0].postId%>"></a>
+											<i class="fas fa-globe-asia"></i>
+										</a>
+									</span>
+								</div>
+							</div>
+							<br />
+							<div class="container-fluid">
+								<div class="col-12 trendingPhotoDiv">
+									<img src="<%- post[0].postPhoto%>" class="trendingPhoto" />
+								</div>
+							</div>
+						</div>
+					</div>
+                    <% }) %>
+                    <% } else { %>
+
+                    <% ownPost.forEach((post)=>{ %>
 
 					<div class="col-12 container-fluid trendingPost">
 						<div class="row">
@@ -224,7 +201,7 @@
 								<p class="trendingContent"><%= post.postContent%></p>
 								<br />
 								<p class="trendingContent">Address: <%= post.postAddress%></p>
-								<br />
+<br />
 								<div class="col-12 counters">
 									<span>
 										<i
@@ -255,7 +232,8 @@
 							</div>
 						</div>
 					</div>
-					<% }) %>
+                    <% }) %>
+                    <% } %>
 				</div>
 			</div>
 		</div>
@@ -279,13 +257,7 @@
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js"></script>
 		<!-- custom -->
 		<script src="../assets/frontend.js"></script>
-		<script src="../assets/frontendDashboard.js"></script>
-		<!-- google maps -->
-		<!-- Google Map-->
-		<script
-			defer
-			src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB77Ifdt8J_FbKIlSLystbif9l7oEdliUg&callback=initMap"
-		></script>
+		<script src="../assets/frontendFav.js"></script>
 	</body>
 	<!-- Icons made by <a href="http://www.freepik.com/" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/"
     title="Flaticon"> www.flaticon.com</a> -->
