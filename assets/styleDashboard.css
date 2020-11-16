@@ -261,4 +261,27 @@ input[type="file"] {
 	.fixedWrapper {
 		position: relative;
 	}
+	.trendingPost {
+		left: -5%;
+	}
+	.dashboardRight {
+		margin-top: 5vh;
+	}
+	.trendingUserPhotoDiv {
+		padding-left: 10vw;
+	}
+	.trendingUserContentDiv {
+		padding: 2vh 8vw;
+	}
+	.userTextDiv {
+		font-size: 0.8em;
+	}
+	.userPhoto {
+		width: 20vw;
+	}
+	#whatSelector,
+	#whereSelector {
+		width: 25vw;
+		margin-bottom: 0.8em;
+	}
 }

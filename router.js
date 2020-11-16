@@ -54,7 +54,7 @@ module.exports = (express) => {
             postLng: 'posts.postLng',
             postPhoto: 'posts.postPhoto',
             postDate: 'posts.postDate'
-            }).limit(10).orderBy('id', 'desc')
+            }).limit(5).orderBy('id', 'desc')
 
             res.render("explore", { postData: postData }) 
         } catch (err) {
@@ -385,7 +385,7 @@ module.exports = (express) => {
             
             await knex("posts").where('id','=',commentData[0]).increment('received_comments',1)
 
-            res.redirect(`/posts/${commentData}`)
+            res.redirect(`/post/${commentData}`)
 
         } catch (err) {
             console.trace(err);
