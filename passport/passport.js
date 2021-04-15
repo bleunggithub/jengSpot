@@ -37,6 +37,7 @@ module.exports = (app) => {
         if (result) {
           return done(null, user);
         } else {
+          console.log("wrong password:" + result)
           return done(null, false, { message: "Incorrect Credentials. Please try again." });
         }
       } catch (err) {
@@ -125,7 +126,7 @@ passport.use(new GoogleStrategy({
   });
 
   passport.deserializeUser(async (id, done) => {
-    let users = await knex("users").where({ id: id });
+    let users = await knex("users").where({ id });
     if (users.length == 0) {
       return done(new Error(`Wrong User id ${id}`));
     }

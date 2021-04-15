@@ -107,7 +107,7 @@
 							</div>
 						</div>
 						<div class="col-12 writeComment">
-							<form action="/postComment/<%- postData.postId%>" method="POST">
+							<form action="/postComment/<%- postData.id%>" method="POST">
 								<textarea
 									name="commentContent"
 									id="commentContent"
@@ -182,7 +182,7 @@
 							<div class="row justify-content-left userComments">
 								<div class="col-1 commenterPhotoDiv">
 									<img
-										src="<%- comment.poster_userPhoto%>"
+										src="<%- comment.users_userPhoto%>"
 										alt="userPhoto"
 										class="commenterPhoto"
 									/>
@@ -190,10 +190,10 @@
 								<div class="col-8">
 									<div class="col-5 commenterTextDiv">
 										<p class="commenterUsername">
-											<%= comment.poster_username %>
+											<%= comment.users_username %>
 										</p>
 										<div class="col-12 userCommentsContent">
-											<p><%= comment.content %></p>
+											<p><%= comment.commentContent %></p>
 										</div>
 									</div>
 								</div>
