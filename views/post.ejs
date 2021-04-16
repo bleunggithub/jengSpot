@@ -1,93 +1,15 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<link rel="icon" type="image/png" href=”../assets/app_logo.png”/>
+		<%- include("partials/head") %>
 
-		<title>JengSpot</title>
-
-		<!-- animate css -->
-		<link
-			rel="stylesheet"
-			href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css"
-		/>
-		<!-- bootstrap -->
-		<link
-			rel="stylesheet"
-			href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-			integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
-			crossorigin="anonymous"
-		/>
-		<!-- font awesome  -->
-		<link
-			rel="stylesheet"
-			href="https://use.fontawesome.com/releases/v5.15.1/css/all.css"
-			integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp"
-			crossorigin="anonymous"
-		/>
-		<!-- Google font -->
-		<link
-			href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap"
-			rel="stylesheet"
-		/>
-		<link
-			href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&display=swap"
-			rel="stylesheet"
-		/>
 		<!-- custom -->
 		<link rel="stylesheet" type="text/css" href="../assets/stylePost.css" />
 	</head>
 
 	<body>
 		<!-- navbar  -->
-		<nav class="navbar fixed-top navbar-expand-lg navbar-dark">
-			<button
-				class="navbar-toggler"
-				type="button"
-				data-toggle="collapse"
-				data-target="#navbarNav"
-				aria-controls="navbarNav"
-				aria-expanded="false"
-				aria-label="Toggle navigation"
-			>
-				<span class="navbar-toggler-icon"></span>
-			</button>
-			<div class="collapse navbar-collapse" id="navbarNav">
-				<ul class="navbar-nav ml-auto" id="navbarList">
-					<li class="nav-item">
-						<a class="nav-link" href="/dashboard">Trending</a>
-					</li>
-					<!-- <li class="nav-item">
-						<a class="nav-link" href="/rewards">Rewards</a>
-					</li> -->
-					<li class="nav-item">
-						<a class="nav-link" href="/posts">Posts</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="/settings">Settings</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="/logout">Log Out</a>
-					</li>
-				</ul>
-			</div>
-		</nav>
+		<%- include("partials/navbar") %>
+
 		<!-- clouds in the background -->
-		<div class="cloudDiv">
-			<img src="../assets/cloud.png" class="cloud" id="cloud1" />
-			<br />
-			<img src="../assets/cloud.png" class="cloud" id="cloud2" />
-			<br />
-			<img src="../assets/cloud.png" class="cloud" id="cloud3" />
-			<br />
-			<img src="../assets/cloud.png" class="cloud" id="cloud4" />
-			<br />
-			<img src="../assets/cloud.png" class="cloud" id="cloud5" />
-			<br />
-			<img src="../assets/cloud.png" class="cloud" id="cloud6" />
-			<br />
-		</div>
+		<%- include("partials/bg") %>
 
 		<!-- content -->
 		<div class="outerPostContainer container-fluid">

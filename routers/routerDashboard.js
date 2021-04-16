@@ -40,10 +40,9 @@ module.exports = (express) => {
             let postData = await knex('posts')
                 .where({ postDo: requestedPostCat })
                 .orWhere({ postGo: requestedPostCat })
-                .select('id','postTitle','postContent','postDo',
-                    'postGo','postAddress','received_fav','received_comments',
-                    'users_id','users_username','users_userPhoto','postLat','postLng',
-                    'postPhoto','postDate'
+                .select('id', 'postTitle', 'postContent', 'postDo', 'postGo', 'postAddress',
+                    'received_fav', 'received_comments', 'users_id', 'users_username',
+                    'users_userPhoto', 'postLat', 'postLng','postPhoto','postDate'
                 ).orderBy('id', 'desc')
                 
             res.render('dashboard',{ postData, userData:userData[0]}); 

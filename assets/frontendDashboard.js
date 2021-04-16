@@ -1,7 +1,7 @@
 
 let x = document.getElementById("postPhoto");
 let selected = document.getElementById("selected");
-let urlInput = document.getElementById("postPhotUrl")
+let postPhotoUrl = document.getElementById("postPhotoUrl")
 let txt = "";
 
 
@@ -40,13 +40,15 @@ x.addEventListener("change", e => {
     fetch("https://api.imgur.com/3/image/", {
         method: 'post',
         headers: {
-            Authorization: "Client-ID e1f04294844ccd5"
+            Authorization: "Client-ID 6c5af2df15528fc"
         },
         body: formdata
-    }).then(data => data.json()).then(data => {
+    }).then(res => res.json())
+        .then(data => {
+            // console.log(data)
         let photoUrl = data.data.link;
         postPhotoUrl.setAttribute("value",photoUrl)
-        })
+        }).catch(err => console.log(err))
 })
 
 //favourite

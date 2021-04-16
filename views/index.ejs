@@ -1,28 +1,4 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-		<link rel="icon" type="image/png" href=”../assets/app_logo.png”/>
-
-    <title>JengSpot</title>
-
-    <!-- animate css -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css" />
-    <!-- bootstrap -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous" />
-    <!-- font awesome  -->
-    		<link
-			rel="stylesheet"
-			href="https://use.fontawesome.com/releases/v5.15.1/css/all.css"
-			integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp"
-			crossorigin="anonymous"
-		/>
-    <!-- Google font -->
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&display=swap" rel="stylesheet">
+		<%- include('partials/head') %>
     <!-- custom -->
     <!-- landing page -->
     <link rel="stylesheet" href="./assets/styleLanding.css" />
@@ -54,15 +30,8 @@
         </div>
     </nav>
     <!-- clouds in the background -->
-    <div class="cloudDiv">
-        <img src="../assets/cloud.png" class="cloud" id="cloud1"><br />
-        <img src="../assets/cloud.png" class="cloud" id="cloud2"><br />
-        <img src="../assets/cloud.png" class="cloud" id="cloud3"><br />
-        <img src="../assets/cloud.png" class="cloud" id="cloud4"><br />
-        <img src="../assets/cloud.png" class="cloud" id="cloud5"><br />
-        <img src="../assets/cloud.png" class="cloud" id="cloud6"><br />
+		<%- include("partials/bg") %>
 
-    </div>
 
     <!-- contents  -->
 <div class="container-fluid outerContainer">
@@ -215,25 +184,10 @@
         © 2020 JengSpot
     </footer>
 
-    <!-- smooth scroll -->
-    <script
-        src="https://cdn.jsdelivr.net/gh/cferdinandi/smooth-scroll@15.0/dist/smooth-scroll.polyfills.min.js"></script>
-    <!-- jquery-->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <!-- bootstrap -->
+	<%- include('partials/scripts') %>
 
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
-        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
-        crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
-        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
-        crossorigin="anonymous"></script>
-    <!-- GSAP -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js"></script>
     <!-- custom -->
     <script src="./assets/frontend.js"></script>
-    <!-- handlebars-->
-    <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
 
 </body>
 <!-- Icons made by <a href="http://www.freepik.com/" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/"
