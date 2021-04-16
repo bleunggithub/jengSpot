@@ -1,6 +1,6 @@
 # :flight_departure: Travel App :hong_kong:
 
-Team: Betty, Bibek, Curtis
+- First built in Nov 2020, refactored in Apr 2021
 
 ### Problems
 
@@ -16,9 +16,3 @@ Team: Betty, Bibek, Curtis
 
 - Build a web app where travellers can experience HK culture as recommended by locals
 - Gamefied & incentivised blog-based platform for community contribution
-
-### Roles
-
-- Admin
-- User : Content contributors
-- User : Viewers
